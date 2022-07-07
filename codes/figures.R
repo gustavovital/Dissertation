@@ -1,6 +1,6 @@
-# script providing IRF plots:
+# script providing plots:
 # 
-# IRF plots
+# plots
 # 
 # Gustavo Vital
 
@@ -9,11 +9,12 @@ library(tidyverse)
 library(patchwork)
 
 # set wd ----
-setwd('C:/Users/gusta/Documents/mestrado/dissertation/thesis_code/')
+setwd('C:/Users/gusta/Documents/GitHub/dissertation/')
 
 # get data ----
 data.lm <- read_csv('data\\var_lm_irf.csv')
 data.vader <- read_csv('data\\var_vader_irf.csv')
+data <- read_csv('data\\data.csv')
 
 # add row 0 ----
 data.lm <- rbind(0, data.lm)
@@ -146,9 +147,25 @@ layout <- "
 ABC
 DE#
 "
-
+ 
 gdp.lm + une.lm + cpi.lm + ppi.lm + interest.lm + plot_layout(design = layout)
 ggsave("images\\irf_lm.pdf", width = 297, height = 210, units = "mm")
 
 gdp.vader + une.vader + cpi.vader + ppi.vader + interest.vader + plot_layout(design = layout)
 ggsave("images\\irf_vader.pdf", width = 297, height = 210, units = "mm")
+
+# correlation between neg words of vader and neg words of LM-SA-2020 ----
+
+cor(data$vader_negative, data$lm_negative)
+
+data %>% 
+  ggplot(aes(vader_negative, lm_negative)) +
+  geom_smooth(method = 'lm', se = FALSE, colour = 'gray70', size = 1) +
+  geom_point(size = 3, alpha = .4) +
+  labs(y = 'LM-SA-2020 Negative Words', x = 'VADER Negative Words') +
+  theme_classic() +
+  theme(axis.title.x = element_text(size = 18),
+        axis.title.y = element_text(size = 18),
+        axis.text = element_text(size = 18))
+
+ggsave("images\\correlation_vader_lm.pdf", width = 297, height = 210, units = "mm")
