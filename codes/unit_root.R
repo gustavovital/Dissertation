@@ -53,4 +53,44 @@ for(name in 1:length(names(data.test))){
   }
 }
 
+cat('===================================================\n')
+cat('===================================================\n')
+cat('DIFF SERIES\n')
+cat('===================================================\n')
+cat('===================================================\n')
+cat('Augmented-Dickey-Fuller\n')
+cat('===================================================\n')
+for(name in 1:length(names(data.test))){
+  variable <- names(data.test)[name]
+  control <- data.test[, name]
+  
+  for(test in c("none", "drift", "trend")){
+    teste <- summary(ur.df(diff(as.ts(control)), type = test))
+    cat('---------------------------------------------------\n')
+    cat('TYPE OF THE TEST: ', test, '\n')
+    cat('\n')
+    cat('VARIABLE TO BE TESTED:', variable, '\n\n')
+    cat('Confidence Intervals: ', teste@cval[1, 1], teste@cval[1, 2], teste@cval[1, 3], '\n')
+    cat('P-value: ', teste@teststat[1], '\n')
+  }
+}
+
+cat('===================================================\n')
+cat('Phillips & Perron Unit Root Test\n')
+cat('===================================================\n')
+for(name in 1:length(names(data.test))){
+  variable <- names(data.test)[name]
+  control <- data.test[, name]
+  
+  for(test in c("constant", "trend")){
+    teste <- summary(ur.pp(diff(as.ts(control)), model = test, type = 'Z-tau'))
+    cat('---------------------------------------------------\n')
+    cat('TYPE OF THE TEST: ', test, '\n')
+    cat('\n')
+    cat('VARIABLE TO BE TESTED:', variable, '\n\n')
+    cat('Confidence Intervals: ', teste@cval[1, 1], teste@cval[1, 2], teste@cval[1, 3], '\n')
+    cat('P-value: ', teste@teststat, '\n')
+  }
+}
+
 sink(file = NULL)
