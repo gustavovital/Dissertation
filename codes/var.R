@@ -9,7 +9,7 @@ library(tidyverse)
 library(vars)
 
 # set wd ----
-setwd('C:/Users/gusta/Documents/mestrado/dissertation/thesis_code/')
+setwd('C:/Users/gusta/Documents/GitHub/dissertation/')
 
 # read dataset ----
 data <- read_csv('data\\data_model.csv')
