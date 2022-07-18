@@ -284,3 +284,293 @@ VARIABLE TO BE TESTED: vader_negative
 
 Confidence Intervals:  -4.030328 -3.444471 -3.1468 
 P-value:  -10.59378 
+===================================================
+===================================================
+DIFF SERIES
+===================================================
+===================================================
+Augmented-Dickey-Fuller
+===================================================
+---------------------------------------------------
+TYPE OF THE TEST:  none 
+
+VARIABLE TO BE TESTED: gdp 
+
+Confidence Intervals:  -2.58 -1.95 -1.62 
+P-value:  -6.873911 
+---------------------------------------------------
+TYPE OF THE TEST:  drift 
+
+VARIABLE TO BE TESTED: gdp 
+
+Confidence Intervals:  -3.46 -2.88 -2.57 
+P-value:  -6.911803 
+---------------------------------------------------
+TYPE OF THE TEST:  trend 
+
+VARIABLE TO BE TESTED: gdp 
+
+Confidence Intervals:  -3.99 -3.43 -3.13 
+P-value:  -6.893046 
+---------------------------------------------------
+TYPE OF THE TEST:  none 
+
+VARIABLE TO BE TESTED: cpi 
+
+Confidence Intervals:  -2.58 -1.95 -1.62 
+P-value:  -7.037389 
+---------------------------------------------------
+TYPE OF THE TEST:  drift 
+
+VARIABLE TO BE TESTED: cpi 
+
+Confidence Intervals:  -3.46 -2.88 -2.57 
+P-value:  -7.04257 
+---------------------------------------------------
+TYPE OF THE TEST:  trend 
+
+VARIABLE TO BE TESTED: cpi 
+
+Confidence Intervals:  -3.99 -3.43 -3.13 
+P-value:  -7.03008 
+---------------------------------------------------
+TYPE OF THE TEST:  none 
+
+VARIABLE TO BE TESTED: interest 
+
+Confidence Intervals:  -2.58 -1.95 -1.62 
+P-value:  -7.352447 
+---------------------------------------------------
+TYPE OF THE TEST:  drift 
+
+VARIABLE TO BE TESTED: interest 
+
+Confidence Intervals:  -3.46 -2.88 -2.57 
+P-value:  -7.561784 
+---------------------------------------------------
+TYPE OF THE TEST:  trend 
+
+VARIABLE TO BE TESTED: interest 
+
+Confidence Intervals:  -3.99 -3.43 -3.13 
+P-value:  -7.531449 
+---------------------------------------------------
+TYPE OF THE TEST:  none 
+
+VARIABLE TO BE TESTED: ppi 
+
+Confidence Intervals:  -2.58 -1.95 -1.62 
+P-value:  -6.077056 
+---------------------------------------------------
+TYPE OF THE TEST:  drift 
+
+VARIABLE TO BE TESTED: ppi 
+
+Confidence Intervals:  -3.46 -2.88 -2.57 
+P-value:  -6.116736 
+---------------------------------------------------
+TYPE OF THE TEST:  trend 
+
+VARIABLE TO BE TESTED: ppi 
+
+Confidence Intervals:  -3.99 -3.43 -3.13 
+P-value:  -6.214623 
+---------------------------------------------------
+TYPE OF THE TEST:  none 
+
+VARIABLE TO BE TESTED: une 
+
+Confidence Intervals:  -2.58 -1.95 -1.62 
+P-value:  -4.595107 
+---------------------------------------------------
+TYPE OF THE TEST:  drift 
+
+VARIABLE TO BE TESTED: une 
+
+Confidence Intervals:  -3.46 -2.88 -2.57 
+P-value:  -4.657009 
+---------------------------------------------------
+TYPE OF THE TEST:  trend 
+
+VARIABLE TO BE TESTED: une 
+
+Confidence Intervals:  -3.99 -3.43 -3.13 
+P-value:  -4.782578 
+---------------------------------------------------
+TYPE OF THE TEST:  none 
+
+VARIABLE TO BE TESTED: cps 
+
+Confidence Intervals:  -2.58 -1.95 -1.62 
+P-value:  -7.388666 
+---------------------------------------------------
+TYPE OF THE TEST:  drift 
+
+VARIABLE TO BE TESTED: cps 
+
+Confidence Intervals:  -3.46 -2.88 -2.57 
+P-value:  -7.361965 
+---------------------------------------------------
+TYPE OF THE TEST:  trend 
+
+VARIABLE TO BE TESTED: cps 
+
+Confidence Intervals:  -3.99 -3.43 -3.13 
+P-value:  -7.37293 
+---------------------------------------------------
+TYPE OF THE TEST:  none 
+
+VARIABLE TO BE TESTED: lm_negative 
+
+Confidence Intervals:  -2.58 -1.95 -1.62 
+P-value:  -13.31384 
+---------------------------------------------------
+TYPE OF THE TEST:  drift 
+
+VARIABLE TO BE TESTED: lm_negative 
+
+Confidence Intervals:  -3.46 -2.88 -2.57 
+P-value:  -13.26138 
+---------------------------------------------------
+TYPE OF THE TEST:  trend 
+
+VARIABLE TO BE TESTED: lm_negative 
+
+Confidence Intervals:  -3.99 -3.43 -3.13 
+P-value:  -13.20516 
+---------------------------------------------------
+TYPE OF THE TEST:  none 
+
+VARIABLE TO BE TESTED: vader_negative 
+
+Confidence Intervals:  -2.58 -1.95 -1.62 
+P-value:  -14.84879 
+---------------------------------------------------
+TYPE OF THE TEST:  drift 
+
+VARIABLE TO BE TESTED: vader_negative 
+
+Confidence Intervals:  -3.46 -2.88 -2.57 
+P-value:  -14.79301 
+---------------------------------------------------
+TYPE OF THE TEST:  trend 
+
+VARIABLE TO BE TESTED: vader_negative 
+
+Confidence Intervals:  -3.99 -3.43 -3.13 
+P-value:  -14.73517 
+===================================================
+Phillips & Perron Unit Root Test
+===================================================
+---------------------------------------------------
+TYPE OF THE TEST:  constant 
+
+VARIABLE TO BE TESTED: gdp 
+
+Confidence Intervals:  -3.481377 -2.883656 -2.578427 
+P-value:  -6.578193 
+---------------------------------------------------
+TYPE OF THE TEST:  trend 
+
+VARIABLE TO BE TESTED: gdp 
+
+Confidence Intervals:  -4.030861 -3.444724 -3.146949 
+P-value:  -6.55389 
+---------------------------------------------------
+TYPE OF THE TEST:  constant 
+
+VARIABLE TO BE TESTED: cpi 
+
+Confidence Intervals:  -3.481377 -2.883656 -2.578427 
+P-value:  -11.17708 
+---------------------------------------------------
+TYPE OF THE TEST:  trend 
+
+VARIABLE TO BE TESTED: cpi 
+
+Confidence Intervals:  -4.030861 -3.444724 -3.146949 
+P-value:  -11.25874 
+---------------------------------------------------
+TYPE OF THE TEST:  constant 
+
+VARIABLE TO BE TESTED: interest 
+
+Confidence Intervals:  -3.481377 -2.883656 -2.578427 
+P-value:  -9.971757 
+---------------------------------------------------
+TYPE OF THE TEST:  trend 
+
+VARIABLE TO BE TESTED: interest 
+
+Confidence Intervals:  -4.030861 -3.444724 -3.146949 
+P-value:  -9.933697 
+---------------------------------------------------
+TYPE OF THE TEST:  constant 
+
+VARIABLE TO BE TESTED: ppi 
+
+Confidence Intervals:  -3.481377 -2.883656 -2.578427 
+P-value:  -6.088976 
+---------------------------------------------------
+TYPE OF THE TEST:  trend 
+
+VARIABLE TO BE TESTED: ppi 
+
+Confidence Intervals:  -4.030861 -3.444724 -3.146949 
+P-value:  -6.192944 
+---------------------------------------------------
+TYPE OF THE TEST:  constant 
+
+VARIABLE TO BE TESTED: une 
+
+Confidence Intervals:  -3.481377 -2.883656 -2.578427 
+P-value:  -7.602775 
+---------------------------------------------------
+TYPE OF THE TEST:  trend 
+
+VARIABLE TO BE TESTED: une 
+
+Confidence Intervals:  -4.030861 -3.444724 -3.146949 
+P-value:  -7.706278 
+---------------------------------------------------
+TYPE OF THE TEST:  constant 
+
+VARIABLE TO BE TESTED: cps 
+
+Confidence Intervals:  -3.481377 -2.883656 -2.578427 
+P-value:  -9.220236 
+---------------------------------------------------
+TYPE OF THE TEST:  trend 
+
+VARIABLE TO BE TESTED: cps 
+
+Confidence Intervals:  -4.030861 -3.444724 -3.146949 
+P-value:  -9.248298 
+---------------------------------------------------
+TYPE OF THE TEST:  constant 
+
+VARIABLE TO BE TESTED: lm_negative 
+
+Confidence Intervals:  -3.481377 -2.883656 -2.578427 
+P-value:  -24.66401 
+---------------------------------------------------
+TYPE OF THE TEST:  trend 
+
+VARIABLE TO BE TESTED: lm_negative 
+
+Confidence Intervals:  -4.030861 -3.444724 -3.146949 
+P-value:  -24.55436 
+---------------------------------------------------
+TYPE OF THE TEST:  constant 
+
+VARIABLE TO BE TESTED: vader_negative 
+
+Confidence Intervals:  -3.481377 -2.883656 -2.578427 
+P-value:  -25.61125 
+---------------------------------------------------
+TYPE OF THE TEST:  trend 
+
+VARIABLE TO BE TESTED: vader_negative 
+
+Confidence Intervals:  -4.030861 -3.444724 -3.146949 
+P-value:  -25.50618 
