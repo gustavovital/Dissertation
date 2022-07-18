@@ -16,6 +16,9 @@ data.lm <- read_csv('data\\var_lm_irf.csv')
 data.vader <- read_csv('data\\var_vader_irf.csv')
 data <- read_csv('data\\data.csv')
 
+names(data.lm)[1] <- 'X1'
+names(data.vader)[1] <- 'X1'
+
 # add row 0 ----
 data.lm <- rbind(0, data.lm)
 data.vader <- rbind(0, data.vader)
