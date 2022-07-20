@@ -2,10 +2,3 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces VADER 3-class classification performance as compared to individual human raters and 7 established lexicon baselines\relax }}{7}{table.caption.10}%
-\addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Unit Root Tests: Augmented-Dickey-Fuller and Phillips \& Perron\relax }}{13}{table.caption.12}%
-\contentsline {table}{\numberline {4.2}{\ignorespaces Unit Root Tests for the Series in Difference: Augmented-Dickey-Fuller and Phillips \& Perron\relax }}{13}{table.caption.13}%
-\contentsline {table}{\numberline {4.3}{\ignorespaces Variable Selection Models: VADER Sentiment\relax }}{17}{table.caption.16}%
-\contentsline {table}{\numberline {4.4}{\ignorespaces Variable Selection Models: LM-SA Sentiment\relax }}{18}{table.caption.17}%
-\addvspace {10\p@ }

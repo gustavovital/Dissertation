@@ -63,24 +63,24 @@ Also regarding the behavior of the series, two unit root tests were performed to
 
 Basically, the Augmented-Dickey-Fuller and Phillips \& Perron tests consist of verifying whether the time series have a unit root. In the case of the Augmented-Dickey-Fuller test, given the equation:
 \begin{align}
-    \Delta y_t = \alpha + \beta t + \gamma y_{t-1} + \sum_{i=1}^{p} \delta_i \Delta y_{t-i} + \epsilon_t
+    \Delta y_t = \alpha + \beta t + \gamma y_{t-1} + \sum_{i=1}^{p} \delta_i \Delta y_{t-i} + \varepsilon_t
 \end{align}
-where $\alpha$ is the model constant, $\beta$ the coefficient related to the trend, $p$ is the order of the autoregressive process and $\Delta$ represents the difference in the series. If both $\alpha$ and $\beta$ are not significant for the model, that is $\alpha = 0$ and $\beta = 0$, the variation of $y$ in $t$ will be explained only by $\ epsilon$, that is, by a white noise.\\
+where $\alpha$ is the model constant, $\beta$ the coefficient related to the trend, $p$ is the order of the autoregressive process and $\Delta$ represents the difference in the series. If both $\alpha$ and $\beta$ are not significant for the model, that is $\alpha = 0$ and $\beta = 0$, the variation of $y$ in $t$ will be explained only by $\varepsilon$, that is, by a white noise.\\
 
 The Phillips \& Perron unit root test, in turn, considers a model with an autoregressive process of order 1, so that:
 \begin{align}
-    y_t = \alpha + \beta t + \phi y_{t-1} + \epsilon_t
+    y_t = \alpha + \beta t + \phi y_{t-1} + \varepsilon_t
 \end{align}
-where $\alpha$ is the model constant, $\beta$ the coefficient related to the trend, $\phi$ is the coefficient related to a first order autoregressive process and $\epsilon$ is a white noise. Again, if $\alpha=0$ and $\beta = 0$ we are dealing with a situation where the series $y_t$ is explained only by a white noise, thus characterizing a random walk -- that is: the series is non-stationary. \\
+where $\alpha$ is the model constant, $\beta$ the coefficient related to the trend, $\phi$ is the coefficient related to a first order autoregressive process and $\varepsilon$ is a white noise. Again, if $\alpha=0$ and $\beta = 0$ we are dealing with a situation where the series $y_t$ is explained only by a white noise, thus characterizing a random walk -- that is: the series is non-stationary. \\
 
-Both tests were performed for all series, with the exception of the indices of sentiments in difference, since both indices were stationary at level, these were only tested for level. 
+Both tests were performed for all series, with the exception of the indices of sentiments in difference, since both indices were stationary at level, these were only tested for level. In relation to the other variables tested (Table {\ref{tab:urlevel}}), only the Product Gap (statistically significant at 1\% with trend ADF test); Producer Prices Index (statistically significant at 5\% PP test) and Interest Rate (statistically significant
+at 10\% ADF) were identified as stationary. 
 
 
 \begin{table}[!h]
-\label{tab:urlevel}
 \caption{Unit Root Tests: Augmented-Dickey-Fuller and Phillips \& Perron}
 \begin{adjustbox}{max width=\textwidth}
-\begin{tabular}{lllllllllll}
+\begin{tabular}{lllllllllll} 
 \hline
                                & \multicolumn{6}{c|}{Augmented-Dickey-Fuller}                                        & \multicolumn{4}{c}{Phillips \& Perron}                    \\ \cline{2-11} 
                                & \multicolumn{2}{c|}{None} & \multicolumn{2}{c|}{Drift} & \multicolumn{2}{c|}{Trend} & \multicolumn{2}{c|}{Constant} & \multicolumn{2}{c}{Trend} \\ \hline
@@ -88,15 +88,23 @@ Consumer Opinion Surveys       & -0.69189        &         & -2.46604        &  
 Unemployment Rate              & -1.12625        &         & -0.16789        &          & -1.60657        &          & -0.12221          &           & -1.71892        &         \\
 Interest Rate                  & -1.90764        & *       & -0.99368        &          & -2.52323        &          & -0.95965          &           & -2.54834        &         \\
 Consumer Price Index           & -0.9864         &         & -1.16925        &          & -1.96056        &          & -1.23476          &           & -1.958          &         \\
-Gap Gross Domestic Product     & 0.576651        &         & -2.03914        &          & -4.33739        & *        & -1.6031           &           & -2.97149        & *        \\
+Gap Gross Domestic Product     & 0.576651        &         & -2.03914        &          & -4.33739        & *        & -1.6031           &           & -2.97149        &         \\
 Producer Prices Index          & 0.726163        &         & -3.11724        & *        & -2.92142        &          & -2.99263          & *         & -2.64357        &         \\
 Negative Sentiment (VADER)     & -1.15748        &         & -7.23406        & *        & -8.13027        & *        & -9.89749          & *         & -10.5938        & *       \\
 Negative Sentiment LM-SA-2020) & -0.57929        &         & -7.39231        & *        & -7.36532        & *        & -9.93006          & *         & -9.89294        & *       \\ \hline
 \end{tabular}
 \end{adjustbox}
 \caption*{Note: * symbolizes that the series do not reject the null hypotheses of the tests, in the absence of a unit root. The test statistics, for the Augmented-Dickey-Fuller test for none, drift and trend are respectively for 10\%, 5\% and 1\%:-2.58, -1.95, -1.62; -3.46, -2.88, -2.57; -3.99, -3.43 and -3.13. For Phillips \& Perron test for constant and trend are respectively for 10\%, 5\% and 1\%: -3.48, -2.88, -2.58; -4.03, -3.44 and -3.15.}
+\label{tab:urlevel}
 
 \end{table}
+
+In order to follow the economic literature, and with the exception of the Product Gap variable, the series are treated as difference and, thus, the unit root tests are redone\footnote{The sentiment indices and Product Gap are, therefore, , worked at level}.\\
+
+\section{Pre-Processing Data}
+In order to treat the variables in order to obtain the stationarity condition, we now proceed to treat the series in difference, since the series that are not stationary are first-order I(1) integrated, we work with the series from the first difference.\\
+
+When running the tests in difference all series, both tests reject the null hypothesis of unit root at 1\% (Table \ref{tab:urdiff}). The need to verify the stationarity condition becomes essential for one of the proposed case studies: the estimation of an Vector Autoregressive is not possible if any of the variables does not fulfill this condition.
 
 
 % --------------------------------------------------
@@ -117,44 +125,218 @@ Producer Prices Index      & -6.07706        & *       & -6.11674        & *    
 \end{tabular}
 \end{adjustbox}
 \caption*{Note: * symbolizes that the series do not reject the null hypotheses of the tests, in the absence of a unit root. The test statistics, for the Augmented-Dickey-Fuller test for none, drift and trend are respectively for 10\%, 5\% and 1\%:-2.58, -1.95, -1.62; -3.46, -2.88, -2.57; -3.99, -3.43 and -3.13. For Phillips \& Perron test for constant and trend are respectively for 10\%, 5\% and 1\%: -3.48, -2.88, -2.58; -4.03, -3.44 and -3.15.}
+\label{tab:urdiff}
 \end{table}
 
-
-
-
+Given that the series are stationary in difference, for the VAR case study, we will use them like this, for the other exercise the series will remain level.
 
 \section{Modeling}
 
+Two exercises are proposed, as previously mentioned. First, a case study will be carried out taking into account the inclusion of sentiment indices when considering economic models when utilizing Variable Selection Models criteria. For this, the LASSO, Adaptive LASSO and Elastic Net models are used.\\
+
+The second case study refers to an Autoregressive Vector (VAR) -- impulse response functions are used to better understand the behavior of macroeconomic variables when a shock is given to one of the sentiment indices (VADER and LM- SA-2020).\\
+
+\subsection{Variable Selection Models}
+
+Variable selection models have as main objective the identification and statistically significant variables for a model. Unlike information criteria such as AIC \cite[]{akaike1974new} and BIC \cite[]{schwarz1978estimating}, the variable selection models used here are variations of the conventional LASSO model. That is, the selection of variables is done by forcing the coefficients related to each variable to 0 when not significant, so that when significant, the coefficients are greater than 0.\\
+
+The first method of Variable Selection Models used in this first case study is the conventional LASSO. The LASSO estimator (least absolute shrinkage and selection operator) is a linear estimation method presented in 1996 in a paper entitled ``Regression Shrinkage and Selection via the lasso'' \cite[]{tibshirani1996regression}. For regressions and generalized regressions, this estimator was proposed as a shrinkage and selection method.\\
+
+Assuming a data set such that $(x^i, y_i)$ and $i = 1, 2, \dots , N$, and assuming $x^i = (x_{i1}, \dots, x_{ip})^T$ are the predictor variables and $y_i$ is the dependent variable. Also, since $\hat{\beta} = (\beta_1, \dots, \beta_p)^T$ the estimate LASSO $(\hat{\beta}^{lasso})$ \cite[p. 268]{tibshirani1996regression} is given in its Lagrangian equivalent by:
+
 \begin{align} \label{eq:lasso}
-    \hat{\beta}^{lasso} = \argmin_{\beta} \left\{ \sum_{i=1}^{n} \left( y_i - \sum_{j=1}^p x_{i,j}b_j \right)^2 + \lambda \sum_{j=1}^p |b_j| \right\}
+    \hat{\beta}^{lasso} = \frac{1}{2}(y - Xb)'(y - Xb) + \lambda\sum_{j=1}^p|b_j|
 \end{align}
+the penalty on $\sum_1 ^p |\beta_j|$ is called the L1 lasso penalty \cite[p.68]{hastie2009elements} and this last constraint makes the solution nonlinear in $y_i$. The LASSO, however, ``does not focus on subsets but rather defines a continuous shrinking operation that can produce coefficients that are exactly 0''\cite[p.286]{tibshirani1996regression}. Thus, it can be seen that the greater $\lambda$, the greater the number of coefficients defined as 0. The value of $\lambda$ in this case study is obtained by cross validation following the literature\cite[p. 136]{hoornweg2018science}.\\
+
+Another estimator used in this case study as a variable selection model is the first variation of the LASSO presented here. The  Adaptive lasso estimator was first described by \cite{zou2006adaptive} and, in contrast to lasso, augments the penalty with a vector of weights. The adaptive LASSO estimator ($\hat{\beta}^{alasso}$), then, is given by:
 
 \begin{align} \label{eq:lassoadaptive}
-    \hat{\beta}^{alasso} = \argmin_{\beta} \left\{\sum_{i=1}^{n} \left( y_i - \sum_{j=1}^p x_{i,j}b_j \right)^2 + \lambda \sum_{j=1}^p |b_j| \right\}
+    \hat{\beta}^{alasso} = \frac{1}{2}(y - Xb)'(y - Xb) + \lambda\sum_{j=1}^p\hat{w}_j |b_j|
 \end{align}
 
-According to \cite{zou2005regularization}, an elastic net estimator is given by:
+Where $\hat{w}_j$ is a vector of weights and can ``be given by $\hat{w}_j = \frac{1}{|b_{ols, j}|^\gamma}$, for some $ \gamma > 0$'' \cite[p. 115]{hoornweg2018science}.\\
+
+The third variable selection model used here is the Elastic Net model \cite[]{zou2005regularization}. Despite the fact that there are more choices for other LASSO models, like the random LASSO \cite[]{wang2011random} and the group LASSO \cite[]{yuan2006model}, Elastic Net was used for being a well-known reference in the literature and for combining the L2 penalty\footnote{The L2 penalty is also known as Ridge regression \cite[p.2]{owen2007robust}.}:
+
 \begin{align}\label{eq:elasticnet}
-    \hat{\beta}^{enet} = \argmin_{\beta} \left\{ \sum_{i=1}^{n} \left( y_i - \sum_{j=1}^p x_{i,j}b_j \right)^2 + \lambda_1 \sum_{j=1}^p |b_j| + \lambda_2 \sum_{j=1}^p b_j^2 \right\}
+    \hat{\beta}^{enet} = \frac{1}{2}(y - Xb)'(y - Xb) + \lambda\sum_{j=1}^p\left(\frac{\alpha}{2}b_j ^2 + (1 - \alpha)|b_j|\right)
+\end{align}
+The formulation presented in (\ref{eq:elasticnet}) is the same formulation presented by \cite{hastie2009elements}. The Elastic Net model introduces a parameter $\alpha$ into the model so that when $\alpha = 0$ the model only incorporates the L1 LASSO penalty; and when $\alpha = 1$ the model only incorporates the L2 Ridge penalty; when $0 < \alpha < 1$ the Elastic Net model incorporates properties from both the LASSO model and the Ridge model. In this case, both $\lambda$ and $\alpha$ were obtained from cross validation.
+
+
+\subsection{Vector Autoregression}
+
+In order to consider a deeper analysis in terms of economic simulation, and taking into account the endogeneity characteristic, a Vector Autogression (VAR) model is estimated as a second case study. In mathematical terms, we can represent a VAR(1) in a matrix form, that is, a first-order Autoregressive Vector as follows:
+
+\begin{align} \label{eq:var1}
+    \begin{bmatrix}
+    y_{1,t} \\
+    y_{2,t}
+    \end{bmatrix} = 
+    \begin{bmatrix}
+    \delta_1\\
+    \delta_2
+    \end{bmatrix} +
+    \begin{bmatrix}
+    \phi_{11} & \phi_{12} \\
+    \phi_{21} & \phi_{22}
+    \end{bmatrix}
+    \begin{bmatrix}
+    y_{1,t-1} \\
+    y_{2,t-1}
+    \end{bmatrix} +
+    \begin{bmatrix}
+    \varepsilon_{1,t} \\
+    \varepsilon_{2,t}
+    \end{bmatrix} 
 \end{align}
 
+Where $y_1$ and $y_2$ are endogenous variables and $\varepsilon_1$ and $\varepsilon_2$ are the error terms for each equation. $\phi_{12}$ represents, in turn, the linear dependence of $Y_{1, t}$ on $y_{2, t-1}$ given the presence of $y_{1, t-1}$ . Thus, if $\phi_{12} = 0$, then $y_{1, t}$ does not depend on $y_{2, t-1}$ when $y_{2, t-1}$ is given. \\
+
+Also, according to \cite{verbeek2008guide}, we can represent a first-order Autoregressive Vector as follows:
+
+\begin{align*}
+    \overrightarrow{Y_t} = \phi + \theta \overrightarrow{Y_{t-1}} + \overrightarrow{\varepsilon_t} \quad ,
+\end{align*}
+where, for a VAR(1) with two variables: $\overrightarrow{Y_t} = [y_{1,t}, y_{2, t}]'$ and $\overrightarrow{\varepsilon_t} = [\varepsilon_{1, t}, \varepsilon_{2, t}]$. Thus, in general a VAR(P) can be written as follows:
+
+\begin{align*}
+    \overrightarrow{Y_t} = \phi + \theta_1 \overrightarrow{Y_{t-1}} + \dots + \theta_p \overrightarrow{Y_{t-p}} + \overrightarrow{\varepsilon_t} \quad ,
+\end{align*}
+where each $\theta_j$ is a matrix $k \times k$ and $\overrightarrow{\varepsilon_t}$ is a vector of length $k$ of white noises, with a covariance matrix defined by $\sum$.\\
+
+For each of its parts, the VAR model implies an ARMA model. Since the information set is expanded to additionally include the history of other variables, evaluating the components simultaneously has the advantages of being more parsimonious, containing fewer lags, and allowing for more accurate predictions \cite[p.322]{verbeek2008guide}. From a different angle, \cite{sims1980macroeconomics} asserts that using VAR models rather than simultaneous structural equations is advantageous since no 'arbitrary' limitations or previous assumptions need to be made regarding the separation between exogenous and endogenous variables.\\
+
+In the same way that we can represent an Autoregressive from its moving average component, we can also write a VAR as a moving average vector. Considering the equation (\ref{eq:var1}, we can represent it as follows:
+
+\begin{align} \label{eq:mavar1}
+    \begin{bmatrix}
+    y_{1,t} \\
+    y_{2,t}
+    \end{bmatrix} = 
+    \begin{bmatrix}
+    \bar{y_1}\\
+    \bar{y_2}
+    \end{bmatrix} + \sum_{i=0}^{\infty}
+    \begin{bmatrix}
+    \phi_{11} & \phi_{12} \\
+    \phi_{21} & \phi_{22}
+    \end{bmatrix}^i
+    \begin{bmatrix}
+    \varepsilon_{1,t-i} \\
+    \varepsilon_{2,t-i}
+    \end{bmatrix} 
+\end{align}
+Where $y_{1, t}$ and $y_{2, t}$ are expressed in terms of \{$\varepsilon_{1, t}$\} and \{$\varepsilon_{1, t}$\} respectively. According to \cite{enders2008applied}, it is possible to rewrite the previous equation in terms of \{$\varepsilon_{y1, t}$\} and \{$\varepsilon_{y2, t}$\}. Thus, the error vector can be written as follows:
+
+\begin{align} \label{eq:varvarepsilon}
+    \begin{bmatrix}
+    \varepsilon_{1,t} \\
+    \varepsilon_{1,t}
+    \end{bmatrix} = \frac{1}{1 - b_{12}b_{21}}
+    \begin{bmatrix}
+    1 & -b_{12} \\
+    -b_{21} & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+    \varepsilon_{y1, t} \\
+    \varepsilon_{y2, t}
+    \end{bmatrix}
+\end{align}
+combining the equations (\ref{eq:mavar1}) and (\ref{eq:varvarepsilon}), we obtain:
+
+\begin{align*}
+    \begin{bmatrix}
+    y_{1,t} \\
+    y_{2,t}
+    \end{bmatrix} =
+    \begin{bmatrix}
+    \bar{y_1}\\
+    \bar{y_2}
+    \end{bmatrix} + \frac{1}{1 - b_{12}b_{21}} \sum_{i=0}^{\infty}
+    \begin{bmatrix}
+    \phi_{11} & \phi_{12} \\
+    \phi_{21} & \phi_{22}
+    \end{bmatrix}^i
+    \begin{bmatrix}
+    1 & -b_{12} \\
+    -b_{21} & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+    \varepsilon_{y1, t} \\
+    \varepsilon_{y2, t}
+    \end{bmatrix} \quad ,
+\end{align*}
+replacing the matrix $2 \times 2$ with a generic term to simplify the notation:
+
+\begin{align}
+    \Gamma_i = \frac{A_1 ^i}{1 - b_{12}b_{21}}\begin{bmatrix}
+    1 & -b_{12}\\
+    -b_{21} & 1
+    \end{bmatrix}
+\end{align}
+therefore, the moving media representation presented in (\ref{eq:mavar1}) and (\ref{eq:varvarepsilon}) can be expressed as:
+
+\begin{align} \label{eq:mavar1}
+    \begin{bmatrix}
+    y_{1,t} \\
+    y_{2,t}
+    \end{bmatrix} = 
+    \begin{bmatrix}
+    \bar{y_1}\\
+    \bar{y_2}
+    \end{bmatrix} + \sum_{i=0}^{\infty}
+    \begin{bmatrix}
+    \Gamma_{11}(i) & \Gamma_{12}(i) \\
+    \Gamma_{21}(i) & \Gamma_{22}(i)
+    \end{bmatrix}^i
+    \begin{bmatrix}
+    \varepsilon_{y1, t} \\
+    \varepsilon_{y2, t}
+    \end{bmatrix} \quad ,
+\end{align}
+or in a more compact form:
+
+\begin{align*}
+    x_t = \epsilon + \sum_{i=0}^{\infty}\Gamma_i \varepsilon_{t-1}
+\end{align*}
+In terms of analysis, the final equation offers a very helpful tool to look at how the variables $y_1$ and $y_2$ interact with one another. For time periods of $y_1$ and $y_2$, the effects of $\varepsilon_{y1, t}$ on shocks of $\varepsilon_{y1, t}$ can be generated using the coefficients of $\Gamma_i$. As a result, it is clear that the four components of $\Gamma_{jk}(0)$ are effect multipliers \cite[p.295]{enders2008applied}.\\
+
+By correctly adding the coefficients of the \textit{impulse response functions}, it is possible to determine the overall effects of an impulse on $\varepsilon_{y1, t}$ and/or $\varepsilon_{y2, t}$. For instance, we can observe that the impact of $\varepsilon_{y2, t}$ on the value of $y_{1+n}$ after $n$ periods is $\Gamma_{12}(n)$. The cumulative sum of $\varepsilon_{y2, t}$ effects on $y_1$ after n periods is as follows:
+
+\begin{align*}
+    \sum_{i=0}^{n}\Gamma_{12}(i) \quad ,
+\end{align*}
+if $y_1$ and $y_2$ are stationary, the values of $\Gamma_{jk}(i)$ converge to zero, the larger $i$ is. Shocks cannot, therefore, permanently alter stationary series. Thus, it follows:
+
+\begin{align*}
+    \sum_{i=0}^{\infty}\Gamma^2 _{jk}(i) \text{ is finite,}
+\end{align*}
+the four sets of coefficients $\Gamma_{11}(i)$, $\Gamma_{12}(i)$, $\Gamma_{21}(i)$ and $\Gamma_{22}(i)$ are called the impulse response function.
+
+\section{Cross Validation and Learning Algorithms}
+
+Cross Validation is a technique widely described in the literature \cite[]{hoornweg2018science, hastie2009elements, stone1974cross, breiman1992submodel} that aims to obtain optimal parameters from a predefined model. In Cross Validation, the dataset is divided between a training dataset and a test dataset, these being composed of 80\% and 20\% of the original dataset \cite[291]{breiman1992submodel}. The model, then, ``is estimated with a training sample and these estimates are used to ‘predict’ the outcomes of the validation sample. By varying the choice of a tuning parameters, one can select the set of configurations that leads to the best pseudo-out-of-sample forecasts''\cite[p.136]{hoornweg2018science}.\\
+
+\begin{figure}[!h]
+    \centering
+    \caption{Cross Validation Flowchart}
+    \includegraphics[width=.6\textwidth]{images/validation.eps}
+    \label{fig:cv}
+\end{figure}
 
 
+Figure \ref{fig:cv} presents a flowchart explaining how Cross Validation works. The same procedure was performed for the models estimated in this work (LASSO, Adaptive LASSO, and Elastic Net). Both the training, validation, and test dataset division were done randomly using the texttt{Matrix} \cite[]{matrix2020cran} package of the R software.\\
 
-%pre-processing
-% cross validation
+Four evaluation metrics criteria were taken into consideration when performing the cross validation procedure for the variable selection models. The $R^2$ \cite{heinisch1962steel}, the MAE \cite{willmott2005advantages}, the MSE \cite{bickel2015mathematical}, and the RMSE \cite{hyndman2006another}. Based on these criteria, the values of $\lambda$ were selected for the LASSO and Adaptive LASSO models, and the values of $\lambda$ and $\alpha$ for the Elastic Net model. For the VAR models, in addition to the AIC and BIC selection criteria, the Hannan–Quinn information criterion \cite{hannan1979determination} was also used.\\
 
-%learning algorithms
-%evaluation metrics
+From there, the selected models were analyzed and the results will be presented in the next  section  \ref{sec:expresults}.
 
-\section{Experimental Results}
-
+\section{Experimental Results} \label{sec:expresults}
 
 
-
-
-
-\begin{figure}
+\begin{figure}[!h]
     \centering
     \caption{Impulse Response of a Sentiment Index (LM-SA) Shock on Economic Activity}
     \includegraphics[width=\textwidth]{images/irf_lm.pdf}
@@ -240,16 +422,3 @@ LM-SA Sentiment          & x        & x                 & x             & x     
 \caption*{Note: the checkmarks symbolize that at least one of the regressors (contemporary or 12 lags) was estimated with non-zero coefficients by the LASSO, Adaptive LASSO or Elastic Net estimator indicated by the column headers. The dependent variable for each model is listed above the column headings.}
 \end{table}
 \end{landscape}
-
-
-
-
-
-
-
-
-
-
-
-
-
