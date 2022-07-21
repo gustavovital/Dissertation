@@ -335,15 +335,36 @@ From there, the selected models were analyzed and the results will be presented 
 
 \section{Experimental Results} \label{sec:expresults}
 
-Two exercises were performed in this section. First, the variable selection models are analyzed, and then in the second part of the section, the impulse response of the VAR models is analyzed.\\
+Two exercises were performed in this section. First, the variable selection models are analyzed, and then in the second part of the section, the impulse response of the VAR models is analyzed. The R software and the Python language \cite[]{van1995python} were used to carry out this work, the codes can be found at \href{https://github.com/gustavovital/Dissertation}{Repository of this Dissertation}\\
 
 \subsection{Variable Selection Models}
 
 The first case study presented here concerns the estimation of three variable selection models, namely LASSO, Adaptive LASSO and Elastic Net\footnote{The calculations and estimations were made using the package \texttt{glmnet} \cite[] {glmnet2011noah}.}. The specification of the estimated model takes into account the addition of contemporary variables and a one-year lag in relation to the regressors and the response variable. The only variables that were not considered dependent variables in this study were the sentiment indices (VADER and LM-SA-2020) and the control dummies used (Subprime mortgage crisis and COVID-19 pandemic).\\
 
+The optimal values of the $\lambda$ and $\alpha$ parameters were obtained through Cross Validation. First, the dataset was divided between training dataset and test dataset and, finding the optimal values of the parameters, the model was evaluated against the test dataset -- from evaluation metrics such as MAE, MSE, and RMSE it is possible to identify of the best models, among the variable selection models.\\
 
+For the estimation of models and ``given that the LASSO model need not be parsimonious''\cite[p. 25]{shapiro2020measuring}, all series presented here were used in the model. So the LASSO\footnote{The model presented is the same for the Adaptive LASSO and Elastic Net models, only the penalty of each model changes, according to the specificity of each one.} equation (\ref{eq:lasso}) for representation purposes can be expressed as:
 
+\begin{align}
+    \hat{\beta}^{lasso} = \argmin \sum_{i=1}^{n}\left(y_{i,t+12} - \sum_{j=1}^{p}x_{i,j}b_j\right)^2 +\lambda\sum_{j=1}^p |b_j|
+\end{align}
+where $y_{i,t+12}$ represents the interest variable $i$ for a period of time $t+12$. In addition to the series initially presented by \cite{barsky2012information} and with the exception of the consumption series, we introduce in this study a proxy for unemployment \cite[]{shapiro2020measuring}, and the Consumer Opinion Surveys, as in the model presented by \cite{shapiro2020measuring}. Thus, $x_{i,j}$ represents the series $i$ with its respective value in the periods $t$ and $t+12$. If the variable selection models select one of the sentiment indices (VADER or LM-SA-2020), then this is an indication that the indices would help in out-of-sample predictions.\\
 
+Table \ref{tab:selectionvader} and Table \ref{tab:selectionlm} present the selections of variables in each of the models, taking into account that each of the Tables presents one of the sentiment indices as a regression variable. In relation to Table \ref{tab:selectionvader}, it is possible to verify that the sentiment index based on VADER is not significant when in a conventional LASSO model, in terms of unemployment estimation. Even so, when considering the estimations of the Adaptive LASSO and Elastic Net models, the sentiment index based on VADER presents a coefficient different from zero. \\
+
+In terms of evaluation metric, when considering the VADER model where the dependent variable is unemployment, the smallest MAE found was that of the Elastic Net model, with a value of 0.2071393, in contrast to the value of the LASSO model, 0.209345; in relation to the MSE, the lowest was that of the Adaptive LASSO model, with a value of 0.06461785, in contrast to the LASSO, whose value was 0.0754084; finally, when we consider the RMSE metric evaluation, the lowest value obtained was that of the Adaptive LASSO model, with a value of 0.2542004, and the conventional LASSO value was 0.2746059. Thus, it is still possible to argue in relation to the choice of model, since, when considering the metric evaluation criteria, both the Adaptive LASSO and Elastic Net models proved to be superior to the estimated conventional LASSO model, considering that among the analyzed criteria the models that maintained the VADER sentiment index stood out better in relation to the model with the exclusion of the sentiment index.\\
+
+When comparing the three models estimated in relation to the VADER sentiment index in this study, it is possible to notice that the results are in line with the results aligned with the literature. In the models estimated by \cite{shapiro2020measuring}, when unemployment is considered as a dependent variable, only the LASSO model does not exclude the index developed by the author as an important variable in the model. The other two models estimated by the author, Adaptive LASSO and Group Lasso, end up not including this variable in the model\footnote{For clarification, when analyzing the models in which the dependent variable is ``Consumption'', these also did not select the sentiment indices developed by the author.}.\\
+
+When analyzing Table \ref{tab:selectionlm}, the results are better. The LM-SA-2020 sentiment index as a regressor variable is present in all estimated models, LASSO, Adaptive LASSO and Elastic Net.\\
+
+If comparing the evaluation metrics for each analyzed model (VADER and LM-SA-2020), the results are as follows: with the VADER sentiment index as a regressor variable, the best predictive model for Consumer Opinion Surveys was LASSO, for the Unemployment Rate was Adaptive LASSO, for the Interest Rate it was LASSO, for the Consumer Price Index it was LASSO, for the Gross Domestic Product it was Adaptive LASSO, and finally for the Producer Prices Index it was also the Adaptive LASSO.\\
+
+On the other hand, when the reference regressor variable is the LM-SA-2020 sentiment index, for the Consumer Opinion Surveys, the best model analyzed was Elastic Net, for the Unemployment Rate, it was LASSO, for Interest Rate was the Adaptive LASSO, for the Consumer Price Index the LASSO and for both the Gross Domestic Product and the Producer Prices Index, the models chosen were the Adaptive LASSO.\\
+
+When comparing the models with each other, that is, the models where one has the VADER sentiment index as a regressor variable and the other has the LM-SA-2020 sentiment index as a regressor variable, the models that had the VADER sentiment index slightly outperformed the models whose regression variable was the LM-SA-2020 sentiment index. The only model where the metric evaluation methods did not point out incisively was in relation to the model where the predictor variable was Consumer Opinion Surveys. With the exception of this one, the evaluation metrics indicated that the VADER index performed better on the following models with the following predictor variables: Unemployment Rate, Interest Rate and Gross Domestic Product. The LM-SA-2020 sentiment index stood out when the analyzed models had the following series as predictor variables: Consumer Price Index and Producer Prices Index.\\
+
+In general, the models proved to be significant to highlight the functionality of how an economic sentiment index affects macroeconomic variables. Both indices showed significant for the estimation of the study variables in at least one of the models, LASSO, Adaptive LASSO or Elastic Net. The results obtained also corroborate the economic literature presented in this work. It is then analyzed how the economic variables would respond to a shock in sentiment indices.
 
 \begin{landscape}
 \begin{table}[]
@@ -382,7 +403,7 @@ VADER Sentiment          & x         & x                 & x              & x   
 
 
 \begin{table}[]
-\caption{Variable Selection Models: LM-SA Sentiment}
+\caption{Variable Selection Models: LM-SA-2020 Sentiment}
 \label{tab:selectionlm}
 \begin{adjustbox}{max width=\linewidth}
 \begin{tabular}{llllllllll}
@@ -395,7 +416,7 @@ Interest Rate            & x        & x                 & x             &       
 Consumer Price Index     & x        & x                 & x             &          & x                & x            & x       & x                & x            \\
 Gross Domestic Product   & x        &                   & x             & x        & x                & x            & x       & x                & x            \\
 Producer Prices Index    & x        & x                 & x             &          & x                & x            & x       & x                & x            \\ \hline
-LM-SA Sentiment          & x        & x                 & x             & x        & x                & x            & x       & x                & x            \\ \hline
+LM-SA-2020 Sentiment          & x        & x                 & x             & x        & x                & x            & x       & x                & x            \\ \hline
                          & \multicolumn{3}{l}{Consumer Price Index}     & \multicolumn{3}{l}{Gross Domestic Product} & \multicolumn{3}{l}{Producer Prices Index} \\
                          & Lasso    & Adaptive Lasso    & Elastic Net   & Lasso    & Adaptive Lasso   & Elastic Net  & Lasso   & Adaptive Lasso   & Elastic Net  \\
 Consumer Opinion Surveys & x        & x                 & x             & x        &                  & x            & x       & x                & x            \\
@@ -404,30 +425,35 @@ Interest Rate            & x        & x                 & x             & x     
 Consumer Price Index     &          &                   &               &          &                  & x            & x       & x                & x            \\
 Gross Domestic Product   &          &                   & x             &          &                  & x            & x       & x                & x            \\
 Producer Prices Index    & x        & x                 & x             & x        & x                & x            & x       & x                & x            \\ \hline
-LM-SA Sentiment          & x        & x                 & x             & x        & x                & x            & x       & x                & x    \\ \hline     
+LM-SA-2020 Sentiment          & x        & x                 & x             & x        & x                & x            & x       & x                & x    \\ \hline     
 \end{tabular}
 \end{adjustbox}
 \caption*{Note: the checkmarks symbolize that at least one of the regressors (contemporary or 12 lags) was estimated with non-zero coefficients by the LASSO, Adaptive LASSO or Elastic Net estimator indicated by the column headers. The dependent variable for each model is listed above the column headings.}
 \end{table}
 \end{landscape}
 
+\begin{figure}
+    \centering
+    \caption{Impulse Response of a Sentiment Index (VADER) Shock on Economic Activity}
+    \includegraphics[width=\textwidth]{images/irf_vader.pdf}
+    \caption*{Note: Impulse Response from a sentiment index shock (VADER). The variables are described as follows: Output gap -- obtained from a HP filter from Real Gross Domestic Product (Euro/ECU series) for Euro area; Unemployment Rate -- Harmonized Unemployment Rate: Total: All Persons for the Euro Area; Consumer Price Index -- Harmonized Prices: Total All Items for the Euro Area; Producer Prices Index -- Economic Activities: Total Industrial Activities for the Euro; and Long-Term Government Bond Yields: -- 10-year for the Euro Area. Following the literature, ``plotted are the point estimates, 68 (light grey), and 90 (dark grey) percent confidence bands'' \cite[p. 40]{shapiro2020measuring}.}
+    \label{fig:my_label}
+\end{figure}
 
 \begin{figure}[!h]
     \centering
     \caption{Impulse Response of a Sentiment Index (LM-SA) Shock on Economic Activity}
     \includegraphics[width=\textwidth]{images/irf_lm.pdf}
-    \caption*{Note: Impulse Response from a sentiment index shock (LM-SA). The variables are described as follows: Output gap -- obtained from a HP filter from Real Gross Domestic Product (Euro/ECU series) for Euro area; Unemployment Rate -- Harmonized Unemployment Rate: Total: All Persons for the Euro Area; Consumer Price Index -- Harmonized Prices: Total All Items for the Euro Area; Producer Prices Index -- Economic Activities: Total Industrial Activities for the Euro; and Long-Term Government Bond Yields: -- 10-year for the Euro Area. Following the literature, Plotted are the point estimates, 68 (light grey), and 90 (dark grey) percent confidence bands \cite[p. 40]{shapiro2020measuring}.}
+    \caption*{Note: Impulse Response from a sentiment index shock (LM-SA-2020). The variables are described as follows: Output gap -- obtained from a HP filter from Real Gross Domestic Product (Euro/ECU series) for Euro area; Unemployment Rate -- Harmonized Unemployment Rate: Total: All Persons for the Euro Area; Consumer Price Index -- Harmonized Prices: Total All Items for the Euro Area; Producer Prices Index -- Economic Activities: Total Industrial Activities for the Euro; and Long-Term Government Bond Yields: -- 10-year for the Euro Area. Following the literature, ``plotted are the point estimates, 68 (light grey), and 90 (dark grey) percent confidence bands'' \cite[p. 40]{shapiro2020measuring}.}
     \label{fig:irflm}
 \end{figure}
 
+\subsection{Response of Economic Activity to Sentiment Indices}
 
-\begin{figure}
-    \centering
-    \caption{Impulse Response of a Sentiment Index (VADER) Shock on Economic Activity}
-    \includegraphics[width=\textwidth]{images/irf_vader.pdf}
-    \caption*{Note: Impulse Response from a sentiment index shock (LM-SA). The variables are described as follows: Output gap -- obtained from a HP filter from Real Gross Domestic Product (Euro/ECU series) for Euro area; Unemployment Rate -- Harmonized Unemployment Rate: Total: All Persons for the Euro Area; Consumer Price Index -- Harmonized Prices: Total All Items for the Euro Area; Producer Prices Index -- Economic Activities: Total Industrial Activities for the Euro; and Long-Term Government Bond Yields: -- 10-year for the Euro Area. Following the literature, Plotted are the point estimates, 68 (light grey), and 90 (dark grey) percent confidence bands \cite[p. 40]{shapiro2020measuring}.}
-    \label{fig:my_label}
-\end{figure}
+
+
+\newpage
+
 
 \section{Discussion}
 
