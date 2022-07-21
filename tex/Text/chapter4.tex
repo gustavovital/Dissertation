@@ -335,29 +335,17 @@ From there, the selected models were analyzed and the results will be presented 
 
 \section{Experimental Results} \label{sec:expresults}
 
+Two exercises were performed in this section. First, the variable selection models are analyzed, and then in the second part of the section, the impulse response of the VAR models is analyzed.\\
 
-\begin{figure}[!h]
-    \centering
-    \caption{Impulse Response of a Sentiment Index (LM-SA) Shock on Economic Activity}
-    \includegraphics[width=\textwidth]{images/irf_lm.pdf}
-    \caption*{Impulse Response from a sentiment index shock (LM-SA). The variables are described as follows: Output gap -- obtained from a HP filter from Real Gross Domestic Product (Euro/ECU series) for Euro area; Unemployment Rate -- Harmonized Unemployment Rate: Total: All Persons for the Euro Area}
-    \label{fig:irflm}
-\end{figure}
+\subsection{Variable Selection Models}
+
+The first case study presented here concerns the estimation of three variable selection models, namely LASSO, Adaptive LASSO and Elastic Net\footnote{The calculations and estimations were made using the package \texttt{glmnet} \cite[] {glmnet2011noah}.}. The specification of the estimated model takes into account the addition of contemporary variables and a one-year lag in relation to the regressors and the response variable. The only variables that were not considered dependent variables in this study were the sentiment indices (VADER and LM-SA-2020) and the control dummies used (Subprime mortgage crisis and COVID-19 pandemic).\\
 
 
-\begin{figure}
-    \centering
-    \caption{Impulse Response of a Sentiment Index (VADER) Shock on Economic Activity}
-    \includegraphics[width=\textwidth]{images/irf_vader.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
 
-\section{Discussion}
+
 
 \begin{landscape}
-
-
 \begin{table}[]
 \caption{Variable Selection Models: VADER Sentiment}
 \label{tab:selectionvader}
@@ -422,3 +410,25 @@ LM-SA Sentiment          & x        & x                 & x             & x     
 \caption*{Note: the checkmarks symbolize that at least one of the regressors (contemporary or 12 lags) was estimated with non-zero coefficients by the LASSO, Adaptive LASSO or Elastic Net estimator indicated by the column headers. The dependent variable for each model is listed above the column headings.}
 \end{table}
 \end{landscape}
+
+
+\begin{figure}[!h]
+    \centering
+    \caption{Impulse Response of a Sentiment Index (LM-SA) Shock on Economic Activity}
+    \includegraphics[width=\textwidth]{images/irf_lm.pdf}
+    \caption*{Note: Impulse Response from a sentiment index shock (LM-SA). The variables are described as follows: Output gap -- obtained from a HP filter from Real Gross Domestic Product (Euro/ECU series) for Euro area; Unemployment Rate -- Harmonized Unemployment Rate: Total: All Persons for the Euro Area; Consumer Price Index -- Harmonized Prices: Total All Items for the Euro Area; Producer Prices Index -- Economic Activities: Total Industrial Activities for the Euro; and Long-Term Government Bond Yields: -- 10-year for the Euro Area. Following the literature, Plotted are the point estimates, 68 (light grey), and 90 (dark grey) percent confidence bands \cite[p. 40]{shapiro2020measuring}.}
+    \label{fig:irflm}
+\end{figure}
+
+
+\begin{figure}
+    \centering
+    \caption{Impulse Response of a Sentiment Index (VADER) Shock on Economic Activity}
+    \includegraphics[width=\textwidth]{images/irf_vader.pdf}
+    \caption*{Note: Impulse Response from a sentiment index shock (LM-SA). The variables are described as follows: Output gap -- obtained from a HP filter from Real Gross Domestic Product (Euro/ECU series) for Euro area; Unemployment Rate -- Harmonized Unemployment Rate: Total: All Persons for the Euro Area; Consumer Price Index -- Harmonized Prices: Total All Items for the Euro Area; Producer Prices Index -- Economic Activities: Total Industrial Activities for the Euro; and Long-Term Government Bond Yields: -- 10-year for the Euro Area. Following the literature, Plotted are the point estimates, 68 (light grey), and 90 (dark grey) percent confidence bands \cite[p. 40]{shapiro2020measuring}.}
+    \label{fig:my_label}
+\end{figure}
+
+\section{Discussion}
+
+
