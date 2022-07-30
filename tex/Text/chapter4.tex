@@ -137,6 +137,7 @@ Two exercises are proposed, as previously mentioned. First, a case study will be
 The second case study refers to an Autoregressive Vector (VAR) -- impulse response functions are used to better understand the behavior of macroeconomic variables when a shock is given to one of the sentiment indices (VADER and LM- SA-2020).\\
 
 \subsection{Variable Selection Models}
+\label{sub:selection}
 
 Variable selection models have as main objective the identification and statistically significant variables for a model. Unlike information criteria such as AIC \cite[]{akaike1974new} and BIC \cite[]{schwarz1978estimating}, the variable selection models used here are variations of the conventional LASSO model. That is, the selection of variables is done by forcing the coefficients related to each variable to 0 when not significant, so that when significant, the coefficients are greater than 0.\\
 
@@ -432,13 +433,35 @@ LM-SA-2020 Sentiment          & x        & x                 & x             & x
 \end{table}
 \end{landscape}
 
-\begin{figure}
+\subsection{Response of Economic Activity to Sentiment Indices}
+
+To verify the relationship and behavior of the economic variables analyzed in response to a variation in sentiment indices, a Vector Autoregressive was estimated. The estimated model takes into account five different variables that represent economic activity in the euro area. The economics variables, as well as in the previously estimated variable selection models (subsection \ref{sub:selection}) were selected from the literature \cite{shapiro2020measuring, barsky2012information} and are the gap of Gross Domestic Product; the Unemployment Rate; the Consumer Price Index; the Produce Price Index; and the Long-Term Government Bond Yields. In addition, the sentiment index was also included in the model -- two models were estimated, each with a different index: in the first, the index based on VADER was used; and in the second, the index based on the LM-SA-2020.\\
+
+Two VAR(2) models were estimated, so the model order was chosen according to the \texttt{vars} \cite{pfaff2008var, pfaff2008book} package according to the AIC, BIC, HQ criteria. The estimated model can be represented mathematically through the equation:
+
+\begin{align} \label{eq:varmodel}
+    \overrightarrow{Y_t} = \phi + \theta_1 \overrightarrow{Y_{t-1}} + \theta_2 \overrightarrow{Y_{t-2}} + \overrightarrow{\varepsilon_t} 
+\end{align}
+Where $\overrightarrow{Y_{t}}$ represents the vector of endogenous variables in the period $t$, and $\overrightarrow{\varepsilon_t}$ represents the vector of errors in the period $t$. It is important to note that, for this exercise, the series that were not considered stationary according to the unit root tests (Table \ref{tab:urlevel}) are worked in first difference. \\
+
+From the equation \ref{eq:varmodel}, the impulse response functions were obtained in order to visualize the behavior of the series. The error bands for the impulse response coefficients were computed by bootstrap\footnote{100 models were simulated for each variable under analysis to generate confidence interval values. Confidence intervals are determined by $CI_s = [s^* _{\alpha / 2}, s^* _{1 - \alpha / 2}]$, where $s^* _{\alpha / 2}$ and $s^* _{1 - \alpha / 2}$ are the $\alpha/2$ and $1 - \alpha/2$ quantiles of the normal distribution\cite[p. 17]{pfaff2008var}.} and the confidence interval used for the results follow recommendations from the literature \cite[p. 40]{shapiro2020measuring}.\\
+
+Figure \ref{fig:irfvader} presents the results obtained from a shock on the VADER sentiment index. Result values are presented in percentage points. \\
+
+From the graphs produced, it is initially perceived that the results that present statistical significance (Output Gap, Producer Price Index, and Long-Term Government Bond Yields) corroborate the results of the economic literature presented before. First, it can be seen that the Output Gap undergoes a significant negative variation given a positive shock on the VADER index -- that is, given that the index is based on negativity, the higher the index score, the more negative, so that it affects the output gap negatively. The shock in the VADER index also demonstrates that a positive variation in the index would represent a positive variation in the Producer Prices Index, in a way that would generate inflationary pressure on prices for producers. Finally, the interest rate, represented by the Long-Term Government Bond Yields, presents both a positive variation and a negative variation given a shock to the VADER index. In the first moment (period $t + 2$) the variation is positive (as expected according to the literature) and in the period $t + 3$ the variation is negative. The tendency is for the series to return to their stationary states in about 12 periods.\\
+
+
+
+\begin{figure}[!h]
     \centering
     \caption{Impulse Response of a Sentiment Index (VADER) Shock on Economic Activity}
     \includegraphics[width=\textwidth]{images/irf_vader.pdf}
     \caption*{Note: Impulse Response from a sentiment index shock (VADER). The variables are described as follows: Output gap -- obtained from a HP filter from Real Gross Domestic Product (Euro/ECU series) for Euro area; Unemployment Rate -- Harmonized Unemployment Rate: Total: All Persons for the Euro Area; Consumer Price Index -- Harmonized Prices: Total All Items for the Euro Area; Producer Prices Index -- Economic Activities: Total Industrial Activities for the Euro; and Long-Term Government Bond Yields: -- 10-year for the Euro Area. Following the literature, ``plotted are the point estimates, 68 (light grey), and 90 (dark grey) percent confidence bands'' \cite[p. 40]{shapiro2020measuring}.}
-    \label{fig:my_label}
+    \label{fig:irfvader}
 \end{figure}
+
+Figure \ref{fig:irflm} presents the results when considering the VAR(2) model (equation (\ref{eq:varmodel})) with the LM-SA-2020 index as an endogenous variable. The results obtained also corroborate the literature described earlier in this work. \\
+
 
 \begin{figure}[!h]
     \centering
@@ -448,12 +471,7 @@ LM-SA-2020 Sentiment          & x        & x                 & x             & x
     \label{fig:irflm}
 \end{figure}
 
-\subsection{Response of Economic Activity to Sentiment Indices}
-
-
-
 \newpage
-
 
 \section{Discussion}
 
