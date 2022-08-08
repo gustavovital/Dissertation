@@ -6,7 +6,7 @@ Given the need to corroborate and expand research in the area of sentiment analy
 
 \section{Problem and Data Description}
 
-Following the example of \cite{shapiro2020measuring}, \cite{barsky2012information} and \cite{shapiro2020measuring}, two practical exercises are proposed.\\
+Following the example of \cite{shapiro2020measuring}, \cite{barsky2012information} and \cite{shapiro202}, two practical exercises are proposed.\\
 
 Firstly, in order to understand whether a sentiment index can be used for forecasting and estimating economic variables, and following the example of \cite{shapiro2020measuring}, we propose the estimation of two LASSO models (L1 norm) in order to identify possible relevant variables in scenarios macroeconomic models -- the first model is the conventional LASSO and the second the Adaptive LASSO. Still, in order to expand the field of estimations, an elastic net model is estimated, in order to capture improvements in model specifications and improve the selection of variables when the coefficients are close to zero  when:the coefficients are close to zero, elastic net tries to take advantage of the information provided by the variables without necessarily forcing the coefficients to zero, and without considering a scenario where all variables are used in order to improve a model (L2 norm).\\
 
@@ -462,6 +462,8 @@ From the graphs produced, it is initially perceived that the results that presen
 
 Figure \ref{fig:irflm} presents the results when considering the VAR(2) model (equation (\ref{eq:varmodel})) with the LM-SA-2020 index as an endogenous variable. The results obtained also corroborate the literature described earlier in this work. \\
 
+A caveat is made to the results presented and in accordance with the LM-SA-2020 index, as this index has an economic and financial basis. Thus, in methodological terms, the results presented here differ when compared with the results referring to the VADER index. Also, it is worth mentioning that the model estimated with the LM-SA-2020 index has more significant impulse responses when considered statistically significant. The variables that showed statistical significance in relation to a shock in the LM-SA-2020 index are: Output Gap; Unemployment Rate; Producer Price Index; and Long-Term Government Bond Yields.\\
+
 
 \begin{figure}[!h]
     \centering
@@ -471,8 +473,25 @@ Figure \ref{fig:irflm} presents the results when considering the VAR(2) model (e
     \label{fig:irflm}
 \end{figure}
 
-\newpage
+The results presented from Figure \ref{fig:irflm} also corroborate the literature presented in \cite{shapiro2020measuring, barsky2012information}. Emphasizing an economic foundation in the impulse response graphs generated for the economic variables.\\
+
+The results indicate that, considering a positive shock in the LM-SA-2020 sentiment index, the Output Gap would have a significant decrease in the second post-shock period, which would propagate for at least 3 more periods. When considering the behavior of the Unemployment Rate, it would suffer a slight decrease in the first and approximately in the tenth period post shock in the LM-SA-2020 sentiment index. The variable that represents the Consumer Price Index does not have statistical significance and, when we analyze the Producer Price Index, we realize that the model indicates that a positive shock in the LM-SA-2020 sentiment index would lead to an increase in the Consumer Price Index. Producer prices from the third to the fourth post-shock period. Finally, when analyzing the Interest Rate, represented by Long-Term Government Bond Yields, there is a slight increase (although statistically significant) in the first period after the sentiment index shock.\\
+
+It is possible to verify that, in terms of statistical significance, when the LM-SA-2020 sentiment index (with economic foundation) is incorporated into the model, the variables begin to correspond better to it than to an index where the incorporated economic foundation is not considered. \\
+
+The economic variable Consumer Price Index did not show statistical significance in either model (on the other hand, this same variable is not significant when \cite[p.46]{shapiro2020measuring} considers the Michigan Consumer Sentiment Index as a control variable in the VAR models estimated by the author).\\
+
+The VAR models were able to show how economic activity would react to a positive shock in a sentiment index based on European Central Bank speeches. In addition, when considering an index elaborated from a lexical dictionary based on economic terms, the results are promising and corroborate the literature, pointing out that it is possible to extract information from a semi-structured database and for them to better understand how the economic scenario works or responds to a change in the relevant economic discourse of a central bank.\\
 
 \section{Discussion}
 
+From the variable selection models, it was possible to perceive that economic indices may be relevant for estimating economic variables and economic scenarios. \\
+
+As much as the VADER index has no economic basis in its lexicons, both this and the LM-SA-2020 index showed statistical significance in terms of projection when considering variables of economic activity, through the LASSO, Adaptive LASSO and Elastic Net models. The results obtained corroborate the results obtained by \cite{shapiro2020measuring} indicating that essentially an unobservable variable representing an index of sentiments can help in the prediction of scenarios and economic activity.\\
+
+When analyzing the VAR models, the results obtained were similar to those in the literature. With the exception of the Consumer Price Index variable, the other economic variables taken into account in this case study showed statistical significance when in the presence of a shock of economic sentiments.\\
+
+It is also notable that when considering an index that is based on economic lexicons, the results are slightly better as exposed by \cite{loughran2011liability}. The VAR models performed better when considering the LM-SA-2020 Index, highlighting the importance of an economic lexicon when analyzing economic texts and articles.\\
+
+In general, the case study proposed here corroborates the economic literature in a broad way, as well as presents interesting results for the economic analysis considering economic indices of sentiments and Natural Language Processing techniques.
 
