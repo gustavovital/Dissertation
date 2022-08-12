@@ -159,14 +159,14 @@ ggsave("images\\irf_vader.pdf", width = 297, height = 210, units = "mm")
 
 # correlation between neg words of vader and neg words of LM-SA-2020 ----
 
-cor(data$vader_negative, data$lm_negative)
+# cor(data$vader_negative, data$lm_negative)
 
 data %>% 
   ggplot(aes(vader_negative, lm_negative)) +
-  geom_smooth(method = 'lm', se = FALSE, colour = 'gray70', size = 1) +
-  geom_point(size = 3, alpha = .4) +
+  geom_smooth(method = 'lm', se = FALSE, colour = 'gray10', size = 1) +
+  geom_jitter(size = 3, alpha = .5) +
   labs(y = 'LM-SA-2020 Negative Words', x = 'VADER Negative Words') +
-  theme_classic() +
+  # theme_classic() +
   theme(axis.title.x = element_text(size = 18),
         axis.title.y = element_text(size = 18),
         axis.text = element_text(size = 18))
