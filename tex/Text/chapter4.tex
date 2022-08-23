@@ -1,4 +1,5 @@
 \chapter{\textbf{European Central Bank Speeches: A Case Study}}
+\label{cap:results}
 
 Given the need to corroborate and expand research in the area of sentiment analysis applied to the economic sciences -- and based on the examples already observed in chapter \ref{chapter:lit}, an application in a case study is proposed here.\\
 
@@ -10,7 +11,7 @@ Following the example of \cite{shapiro2020measuring}, \cite{barsky2012informatio
 
 Firstly, in order to understand whether a sentiment index can be used for forecasting and estimating economic variables, and following the example of \cite{shapiro2020measuring}, we propose the estimation of two LASSO models (L1 norm) in order to identify possible relevant variables in scenarios macroeconomic models -- the first model is the conventional LASSO and the second the Adaptive LASSO. Still, in order to expand the field of estimations, an elastic net model is estimated, in order to capture improvements in model specifications and improve the selection of variables when the coefficients are close to zero  when:the coefficients are close to zero, elastic net tries to take advantage of the information provided by the variables without necessarily forcing the coefficients to zero, and without considering a scenario where all variables are used in order to improve a model (L2 norm).\\
 
-From there, the estimation of an autoregressive vector (VAR) is considered, also following the indications of the literature \citep{shapiro2020measuring, barsky2012information} to better understand how a sentiment index relates to a macroeconomic scenario (and its variables). For this, the main focus of the second exercise is the exploration of impulse and response functions obtained through VAR.
+From there, the estimation of an autoregressive vector (VAR) is considered, also following the indications of the literature \citep{shapiro2020measuring, barsky2012information} to better understand how a sentiment index relates to a macroeconomic scenario (and its variables). For this, the main focus of the second exercise is the exploration of impulse and response functions obtained through VAR.\\
 
 The proposed exercises work fundamentally with observable European economic variables\footnote{it is also worth mentioning the inclusion of the output gap, obtained from the Hodrick–Prescott filter \citep{hodrick1997postwar}}, with the exception of the proposed sentiment index (bag of words), made from two lexicons (VADER and LM-SA).\\
 
@@ -20,14 +21,15 @@ The other series used for the exercises were obtained from the website of FRED -
 
 Given that both series referring to sentiment indices are also not observable, they were obtained as proxies for the speeches of the European central bank\footnote{Speeches are available at https://www.ecb.europa.eu/press/key/date/html/index.en.html}. The methodology discussed here is based on \cite{loughran2011liability}, taking into account its contribution to the literature when referring to the applicability of sentiment analysis applied to economics.\\
 
-According to \cite{loughran2011liability} it is possible to measure, as well as classify an economic text from the negative words in a way that the tone of these presents a correlation with economic and financial variables, since ``The results to date indicate that negative word classifications can be effective in measuring tone, as reflected by significant correlations with other financial variables'' \cite[p. 35]{loughran2011liability}\\
+According to \cite{loughran2011liability} it is possible to measure, as well as classify an economic text from the negative words in a way that the tone of these presents a correlation with economic and financial variables, since ``The results to date indicate that negative word classifications can be effective in measuring tone, as reflected by significant correlations with other financial variables'' \cite[p. 35]{loughran2011liability}.\\
 
 As stated by \cite[p. 13]{shapiro2021taking} ``There is a large and growing literature aimed at quantifying sentiment from text. We use a method known as the `Bag of Words' or `lexical' approach, which relies on predefined dictionaries of words that are associated with particular sentiments'' -- in this work we also consider the polarity when taking into account the VADER -- analysis from valence, given a score. Unlike VADER, where the polarity is displayed\footnote{The polarity was obtained from the Natural Language Toolkit \cite[]{bird2009natural} module for Python from positive, negative, neutral and compound words.} the polarity of each text taking into account the LM-SA-2020 and extracting the composition of negative words in order to consider the weight of each term as a function of the total terms:
 
 \begin{quote}
 ``In the context of information retrieval [\dots] note that term weighting `has an enormous impact on the effectiveness of a retrieval system.' Essentially, term weighting acknowledges that raw word counts are not the
-best measure of a word’s information content''\cite[p. 42]{shapiro2020measuring}  
+best measure of a word’s information content''\cite[p. 42]{shapiro2020measuring}
 \end{quote}
+
 So, given the occurrence of a negative word $W_{Negative}$, its frequency is computed so that the index, based on the negative terms, is given by:
 \begin{align*}
 I_{Negative, i} = \frac{W_{Negative, i}}{W_{Total, i}} \quad ,
@@ -71,11 +73,10 @@ The Phillips \& Perron unit root test, in turn, considers a model with an autore
 \begin{align}
     y_t = \alpha + \beta t + \phi y_{t-1} + \varepsilon_t
 \end{align}
-where $\alpha$ is the model constant, $\beta$ the coefficient related to the trend, $\phi$ is the coefficient related to a first order autoregressive process and $\varepsilon$ is a white noise. Again, if $\alpha=0$ and $\beta = 0$ we are dealing with a situation where the series $y_t$ is explained only by a white noise, thus characterizing a random walk -- that is: the series is non-stationary. \\
+where $\alpha$ is the model constant, $\beta$ the coefficient related to the trend, $\phi$ is the coefficient related to a first order autoregressive process and $\varepsilon$ is a white noise. Again, if $\alpha=0$ and $\beta = 0$ we are dealing with a situation where the series $y_t$ is explained only by a white noise, thus characterizing a random walk -- that is: the series is non-stationary.\\
 
 Both tests were performed for all series, with the exception of the indices of sentiments in difference, since both indices were stationary at level, these were only tested for level. In relation to the other variables tested (Table {\ref{tab:urlevel}}), only the Product Gap (statistically significant at 1\% with trend ADF test); Producer Prices Index (statistically significant at 5\% PP test) and Interest Rate (statistically significant
 at 10\% ADF) were identified as stationary. 
-
 
 \begin{table}[!h]
 \caption{Unit Root Tests: Augmented-Dickey-Fuller and Phillips \& Perron}
@@ -164,7 +165,6 @@ The third variable selection model used here is the Elastic Net model \cite[]{zo
     \hat{\beta}^{enet} = \frac{1}{2}(y - Xb)'(y - Xb) + \lambda\sum_{j=1}^p\left(\frac{\alpha}{2}b_j ^2 + (1 - \alpha)|b_j|\right)
 \end{align}
 The formulation presented in (\ref{eq:elasticnet}) is the same formulation presented by \cite{hastie2009elements}. The Elastic Net model introduces a parameter $\alpha$ into the model so that when $\alpha = 0$ the model only incorporates the L1 LASSO penalty; and when $\alpha = 1$ the model only incorporates the L2 Ridge penalty; when $0 < \alpha < 1$ the Elastic Net model incorporates properties from both the LASSO model and the Ridge model. In this case, both $\lambda$ and $\alpha$ were obtained from cross validation.
-
 
 \subsection{Vector Autoregression}
 
@@ -336,7 +336,7 @@ From there, the selected models were analyzed and the results will be presented 
 
 \section{Experimental Results} \label{sec:expresults}
 
-Two exercises were performed in this section. First, the variable selection models are analyzed, and then in the second part of the section, the impulse response of the VAR models is analyzed. The R software and the Python language \cite[]{van1995python} were used to carry out this work, the codes can be found at \href{https://github.com/gustavovital/Dissertation}{Repository of this Dissertation}\\
+Two exercises were performed in this section. First, the variable selection models are analyzed, and then in the second part of the section, the impulse response of the VAR models is analyzed. The R software and the Python language \cite[]{van1995python} were used to carry out this work, the codes can be found at \href{https://github.com/gustavovital/Dissertation}{Repository of this Dissertation}.\\
 
 \subsection{Variable Selection Models}
 
@@ -351,7 +351,7 @@ For the estimation of models and ``given that the LASSO model need not be parsim
 \end{align}
 where $y_{i,t+12}$ represents the interest variable $i$ for a period of time $t+12$. In addition to the series initially presented by \cite{barsky2012information} and with the exception of the consumption series, we introduce in this study a proxy for unemployment \cite[]{shapiro2020measuring}, and the Consumer Opinion Surveys, as in the model presented by \cite{shapiro2020measuring}. Thus, $x_{i,j}$ represents the series $i$ with its respective value in the periods $t$ and $t+12$. If the variable selection models select one of the sentiment indices (VADER or LM-SA-2020), then this is an indication that the indices would help in out-of-sample predictions.\\
 
-Table \ref{tab:selectionvader} and Table \ref{tab:selectionlm} present the selections of variables in each of the models, taking into account that each of the Tables presents one of the sentiment indices as a regression variable. In relation to Table \ref{tab:selectionvader}, it is possible to verify that the sentiment index based on VADER is not significant when in a conventional LASSO model, in terms of unemployment estimation. Even so, when considering the estimations of the Adaptive LASSO and Elastic Net models, the sentiment index based on VADER presents a coefficient different from zero. \\
+Table \ref{tab:selectionvader} and Table \ref{tab:selectionlm} present the selections of variables in each of the models, taking into account that each of the Tables presents one of the sentiment indices as a regression variable. In relation to Table \ref{tab:selectionvader}, it is possible to verify that the sentiment index based on VADER is not significant when in a conventional LASSO model, in terms of unemployment estimation. Even so, when considering the estimations of the Adaptive LASSO and Elastic Net models, the sentiment index based on VADER presents a coefficient different from zero.\\
 
 In terms of evaluation metric, when considering the VADER model where the dependent variable is unemployment, the smallest MAE found was that of the Elastic Net model, with a value of 0.2071393, in contrast to the value of the LASSO model, 0.209345; in relation to the MSE, the lowest was that of the Adaptive LASSO model, with a value of 0.06461785, in contrast to the LASSO, whose value was 0.0754084; finally, when we consider the RMSE metric evaluation, the lowest value obtained was that of the Adaptive LASSO model, with a value of 0.2542004, and the conventional LASSO value was 0.2746059. Thus, it is still possible to argue in relation to the choice of model, since, when considering the metric evaluation criteria, both the Adaptive LASSO and Elastic Net models proved to be superior to the estimated conventional LASSO model, considering that among the analyzed criteria the models that maintained the VADER sentiment index stood out better in relation to the model with the exclusion of the sentiment index.\\
 
@@ -398,11 +398,7 @@ VADER Sentiment          & x         & x                 & x              & x   
 \end{table}
 \end{landscape}
 
-
-
 \begin{landscape}
-
-
 \begin{table}[]
 \caption{Variable Selection Models: LM-SA-2020 Sentiment}
 \label{tab:selectionlm}
@@ -442,14 +438,13 @@ Two VAR(2) models were estimated, so the model order was chosen according to the
 \begin{align} \label{eq:varmodel}
     \overrightarrow{Y_t} = \phi + \theta_1 \overrightarrow{Y_{t-1}} + \theta_2 \overrightarrow{Y_{t-2}} + \overrightarrow{\varepsilon_t} 
 \end{align}
-Where $\overrightarrow{Y_{t}}$ represents the vector of endogenous variables in the period $t$, and $\overrightarrow{\varepsilon_t}$ represents the vector of errors in the period $t$. It is important to note that, for this exercise, the series that were not considered stationary according to the unit root tests (Table \ref{tab:urlevel}) are worked in first difference. \\
+Where $\overrightarrow{Y_{t}}$ represents the vector of endogenous variables in the period $t$, and $\overrightarrow{\varepsilon_t}$ represents the vector of errors in the period $t$. It is important to note that, for this exercise, the series that were not considered stationary according to the unit root tests (Table \ref{tab:urlevel}) are worked in first difference.\\
 
 From the equation \ref{eq:varmodel}, the impulse response functions were obtained in order to visualize the behavior of the series. The error bands for the impulse response coefficients were computed by bootstrap\footnote{100 models were simulated for each variable under analysis to generate confidence interval values. Confidence intervals are determined by $CI_s = [s^* _{\alpha / 2}, s^* _{1 - \alpha / 2}]$, where $s^* _{\alpha / 2}$ and $s^* _{1 - \alpha / 2}$ are the $\alpha/2$ and $1 - \alpha/2$ quantiles of the normal distribution\cite[p. 17]{pfaff2008var}.} and the confidence interval used for the results follow recommendations from the literature \cite[p. 40]{shapiro2020measuring}.\\
 
-Figure \ref{fig:irfvader} presents the results obtained from a shock on the VADER sentiment index. Result values are presented in percentage points. \\
+Figure \ref{fig:irfvader} presents the results obtained from a shock on the VADER sentiment index. Result values are presented in percentage points.\\
 
 From the graphs produced, it is initially perceived that the results that present statistical significance (Output Gap, Producer Price Index, and Long-Term Government Bond Yields) corroborate the results of the economic literature presented before. First, it can be seen that the Output Gap undergoes a significant negative variation given a positive shock on the VADER index -- that is, given that the index is based on negativity, the higher the index score, the more negative, so that it affects the output gap negatively. The shock in the VADER index also demonstrates that a positive variation in the index would represent a positive variation in the Producer Prices Index, in a way that would generate inflationary pressure on prices for producers. Finally, the interest rate, represented by the Long-Term Government Bond Yields, presents both a positive variation and a negative variation given a shock to the VADER index. In the first moment (period $t + 2$) the variation is positive (as expected according to the literature) and in the period $t + 3$ the variation is negative. The tendency is for the series to return to their stationary states in about 12 periods.\\
-
 
 
 \begin{figure}[!h]
@@ -460,7 +455,7 @@ From the graphs produced, it is initially perceived that the results that presen
     \label{fig:irfvader}
 \end{figure}
 
-Figure \ref{fig:irflm} presents the results when considering the VAR(2) model (equation (\ref{eq:varmodel})) with the LM-SA-2020 index as an endogenous variable. The results obtained also corroborate the literature described earlier in this work. \\
+Figure \ref{fig:irflm} presents the results when considering the VAR(2) model (equation (\ref{eq:varmodel})) with the LM-SA-2020 index as an endogenous variable. The results obtained also corroborate the literature described earlier in this work.\\
 
 A caveat is made to the results presented and in accordance with the LM-SA-2020 index, as this index has an economic and financial basis. Thus, in methodological terms, the results presented here differ when compared with the results referring to the VADER index. Also, it is worth mentioning that the model estimated with the LM-SA-2020 index has more significant impulse responses when considered statistically significant. The variables that showed statistical significance in relation to a shock in the LM-SA-2020 index are: Output Gap; Unemployment Rate; Producer Price Index; and Long-Term Government Bond Yields.\\
 
@@ -477,7 +472,7 @@ The results presented from Figure \ref{fig:irflm} also corroborate the literatur
 
 The results indicate that, considering a positive shock in the LM-SA-2020 sentiment index, the Output Gap would have a significant decrease in the second post-shock period, which would propagate for at least 3 more periods. When considering the behavior of the Unemployment Rate, it would suffer a slight decrease in the first and approximately in the tenth period post shock in the LM-SA-2020 sentiment index. The variable that represents the Consumer Price Index does not have statistical significance and, when we analyze the Producer Price Index, we realize that the model indicates that a positive shock in the LM-SA-2020 sentiment index would lead to an increase in the Consumer Price Index. Producer prices from the third to the fourth post-shock period. Finally, when analyzing the Interest Rate, represented by Long-Term Government Bond Yields, there is a slight increase (although statistically significant) in the first period after the sentiment index shock.\\
 
-It is possible to verify that, in terms of statistical significance, when the LM-SA-2020 sentiment index (with economic foundation) is incorporated into the model, the variables begin to correspond better to it than to an index where the incorporated economic foundation is not considered. \\
+It is possible to verify that, in terms of statistical significance, when the LM-SA-2020 sentiment index (with economic foundation) is incorporated into the model, the variables begin to correspond better to it than to an index where the incorporated economic foundation is not considered.\\
 
 The economic variable Consumer Price Index did not show statistical significance in either model (on the other hand, this same variable is not significant when \cite[p.46]{shapiro2020measuring} considers the Michigan Consumer Sentiment Index as a control variable in the VAR models estimated by the author).\\
 

@@ -1,25 +1,63 @@
 \chapter{\textbf{Methodology}} \label{cap:methodology}
 
-The traditional approach in terms of economic sentiment is the construction of sentiment indices through surveys \cite[p. 4]{shapiro2020measuring}. Usually, these surveys are monthly, with interviews and even verification of the interviewees' personal finances \cite[p. 5]{shapiro2020measuring}. The idea of this work is to obtain a sentiment index through sentiment analysis and Natural Language Processing techniques.
+The traditional approach in terms of economic sentiment is the construction of sentiment indices through surveys \cite[p.4]{shapiro2020measuring} -- ``Usually, these surveys are monthly, with interviews and even verification of the interviewees' personal finances'' \cite[p. 5]{shapiro2020measuring}. The idea of this work is to obtain a sentiment index through sentiment analysis and Natural Language Processing techniques.
 
 \section{Natural Language Processing}
 
 According to \cite{liddy2001natural}, Natural Language Processing (NLP) is a computational approach to textual analysis that is based on both a set of theories and a set of technologies. In other words, by the formal definition, ``Natural Language Processing is a theoretically motivated range of computational techniques for analyzing and representing naturally occurring texts at one or more levels of linguistic analysis for the purpose of achieving human-like language processing for a range of tasks or applications'' \cite[p. 2]{liddy2001natural}. The purpose of this tool is, therefore, ``to accomplish human-like language processing''. In general, the classification of a text, phrase, or even word is given categorically according to its positivity (positive, negative, neutral), or through valence scores, from 1 to 5. ``The sentiment of text is a measure of the speaker's tone, attitude, or evaluation of a topic, independent of the topic's own sentiment orientation (e.g., a horror movie can be `delightful')'' \cite[p. 5]{shapiro2020measuring}.\\
 
-The present work will use lexical-based NLP techniques. ``At this level, humans, as well as NLP systems, interpret the meaning of individual words. Several types of processing contribute to word-level understanding – the first of these being assignment of a single part-of-speech tag to each word. In this processing, words that can function as more than one part-of-speech are assigned the most probable part-of-speech tag based on the context in which they occur'' \cite[p.7]{liddy2001natural}. Still, ``Additionally at the lexical level, those words that have only one possible sense or meaning can be replaced by a semantic representation of that meaning. The nature of the representation varies according to the semantic theory utilized in the NLP system. The following representation of the meaning of the word launch is in the form of logical predicates. As can be observed, the single lexical unit is decomposed into its more basic properties. Given that there is a set of semantic primitives used across all words, these simplified lexical representations make it possible to unify meaning across words and to produce complex interpretations, much the same as humans do'' \cite[p.7]{liddy2001natural}\\
+The present work will use lexical-based NLP techniques. ``At this level, humans, as well as NLP systems, interpret the meaning of individual words. Several types of processing contribute to word-level understanding – the first of these being assignment of a single part-of-speech tag to each word. In this processing, words that can function as more than one part-of-speech are assigned the most probable part-of-speech tag based on the context in which they occur'' \cite[p.7]{liddy2001natural}. Still, ``Additionally at the lexical level, those words that have only one possible sense or meaning can be replaced by a semantic representation of that meaning. The nature of the representation varies according to the semantic theory utilized in the NLP system. The following representation of the meaning of the word launch is in the form of logical predicates. As can be observed, the single lexical unit is decomposed into its more basic properties. Given that there is a set of semantic primitives used across all words, these simplified lexical representations make it possible to unify meaning across words and to produce complex interpretations, much the same as humans do'' \cite[p.7]{liddy2001natural}.\\
+
+\section{Sentiment Analysis and Lexicons}
+
+In the scope of sentiment analysis, it is necessary to use a dictionary of sentiments to detect polarities of sentiments and positive/negative scores. From the scores and polarities, it is possible to obtain a sentiment index that generates a possible correlation with the macroeconomic scenario. Basically, a sentiment dictionary works by indicating a specific punctuation for each word, taking into account punctuation and connectives. That is, depending on how a sentence or sentence is written, its polarity (score) varies.\\
 
 
-
-\section{Sentiment Lexicons} \label{sec:lexicons}
-One of the most adopted and valuable resources for sentiment analysis is the use of sentiment lexicons \cite[]{ahire2014survey, nusko2016building, cambria2013new, kaity2020sentiment}. A sentiment lexicon is a collection of words (sometimes referred to as polar or opinion words) linked to their sentiment orientation, that is, positive or negative \cite{kaity2020sentiment, medhat2014sentiment}
+\subsection{Sentiment Lexicons} \label{sec:lexicons}
+One of the most adopted and valuable resources for sentiment analysis is the use of sentiment lexicons \cite[]{ahire2014survey, nusko2016building, cambria2013new, kaity2020sentiment}. A sentiment lexicon is a collection of words (sometimes referred to as polar or opinion words) linked to their sentiment orientation, that is, positive or negative \cite[]{kaity2020sentiment, medhat2014sentiment}.
 
 
 \subsection{Polarity-based Lexicons} \label{subsec:polbas}
+
+Polarity-based Lexicons are lexicons that allow you to automatically evaluate a text based on its polarity. These lexicons are ``a basic resource for analyzing the sentiments and opinions expressed in texts'' \cite[p.938]{san2016polarity}. When analyzing a text from the perspective of sentiment analysis, a polarity-based lexicon, words and phrases are commonly classified as positive, neutral and negative. If we take the example of the phrase ``Good people sometimes have bad days'', a polarity-based lexicon would possibly classify the word ``Good'' being a \textit{positive} word and the word ``bad'' would probably be classified as \textit{negative} -- the other words in the sentence would possibly be classified as ``neutral'' \cite[]{BCDG07}.\\
+
+In terms of score classification, \cite{BCDG07} shows that in proportional and popular values a positive score can be presented as:
+\begin{align*}
+score = \frac{\text{number of positive words - number of negative words}}{\textit{number of positive words + number of negative words}}
+\end{align*}
+
+where \textit{number of positive words} would be the total number of positive words in a sentence or text and \textit{number of negative words} would be the total number of negative words in a sentence or text.\\
+
+A possible barrier observed is in relation to the elaboration of a polarity-based lexicon and the way in which a lexicon is created \cite[]{stone1966general}. The vast majority of polarity-based lexicon is aimed at generic texts (without a specificity) -- when extracting sentiments from specific texts (such as economic and financial) a lexicon could present spurious results for not taking into account words that in the economic field can be considered positive or negative (the vast majority of lexicons do not include words and economic terms such as ``inflation'', ``recession'', or other such terms) \cite[]{loughran2011liability}.\\
+
+\begin{table}[!h]
+\caption{Examples of polarities in a polarity-based lexicon -- LM-SA-2020}
+\adjustbox{max width=\textwidth}{
+\begin{tabular}{ll|ll|ll|ll}
+\hline
+Word       & Polarity & Word        & Polarity & Word          & Polarity & Word        & Polarity \\ \hline
+Abundance  & Positive & Abandon     & Negative & Inspirational & Positive & Defensive   & Negative \\
+Abundant   & Positive & Abdicated   & Negative & Invented      & Positive & Dever       & Negative \\
+Acclaimed  & Positive & Abdicates   & Negative & Inventor      & Positive & Deficit     & Negative \\
+Accomplish & Positive & Aberrant    & Negative & Leadership    & Positive & Defraud     & Negative \\
+Advances   & Positive & Aberrations & Negative & Leading       & Positive & Defunct     & Negative \\
+Achieves   & Positive & Abrupt      & Negative & Lucrative     & Positive & Degradation & Negative \\ \hline
+\end{tabular}
+}
+\caption*{Source: Words and polarities taken from \cite[]{lmdata}}
+\label{tab:polarity}
+\end{table}
+
+Table \ref{tab:polarity} presents examples of a lexicon based on polarities. Note, however, that this lexicon was constructed based on economic terms and words, based on over 10,000 economic and financial articles \cite[p.1]{lmdata}.\\
+
+In general, when a polarity-based lexicons is applied to a text, more advanced computational techniques are not necessary, except for an interactive algorithm that computes the polarity of the text \cite[]{BCDG07}. 
+
 \subsection{Valence-based Lexicons}
 
-%In the scope of sentiment analysis, 
+A valence-based lexicon can be justified by the need that when analyzing a text or phrase the expected results can be not only binary (positive and negative), but determined by the ``intensity'' of each word or phrase \cite[] {hutto2014vader}. When considering a valence-based lexicon, polarity is the main focus in determining the scores of \cite[]{cambria2012senticnet} words and texts. The authors develop a valence-based lexicon so that texts and words have values such that the $score_i$ (with $i$ being a word, text or even phrase) ranges from $-1$ to $1$, so that $ score_i \subset (-1, 1) \quad \forall \quad score_i \in \mathbb{R}$.\\
 
-%In the scope of sentiment analysis, it is necessary to use a dictionary of sentiments to detect polarities of sentiments and positive/negative scores. From the scores and polarities, it is possible to obtain a sentiment index that generates a possible correlation with the macroeconomic scenario. Basically, a sentiment dictionary works by indicating a specific punctuation for each word, taking into account punctuation and connectives. That is, depending on how a sentence or sentence is written, its polarity (score) varies.
+Even though \cite{cambria2020senticnet} is a valence-based lexicon implemented in Python, compared to other valence-based lexicons \cite[]{hutto2014vader} gives inferior results to other valence-based lexicon.
+
 
 \subsection{VADER – Valence Aware Dictionary for sEntiment Reasoning} \label{subsec:vader}
 
@@ -62,14 +100,6 @@ WSD                        & 0.218               & 0.55              & 0.45     
 \caption*{Source: \citep[p. 223]{hutto2014vader}}
 \label{tab:vaderscore}
 \end{table}
-
-
-
-%One of the most used dictionaries today for detecting sentiments is the Valence Aware Dictionary for Sentiment Reasoning (VADER). The choice of VADER as the main dictionary is due to some facts: “it is bigger, yet just as simply inspected, understood, quickly applied (without a need for extensive learning/training) and easily extended” (Hutto \& Gilbert, 2014. p.1).\\
-
-%Due to the fact that VADER is an open-source dictionary, it is relatively simple to modify the dictionary so that it has a greater focus on the economic part. The change needed is likely to be fundamentally within the word scores: that is, inserting specific words like “price” or “prices” into the dictionary scope and assigning a referent score based on other economics-based sentiment dictionaries. As well as, if necessary, merging VADER with some other dictionary with a more economical approach.\\
-
-%Once you have the scores for the texts as well as the tokens, it becomes possible to relate the variation of certain economic words/terms with the variation in the sentiment of the corpus or of each press conference. The next step is, then, to relate the obtained index (either polarity or the score itself) with macroeconomic variables.\\
 
 \subsection{Loughran-McDonald: LM-SA-2020}  \label{subsec:loughran}
 
