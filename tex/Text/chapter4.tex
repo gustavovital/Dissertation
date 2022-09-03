@@ -7,7 +7,7 @@ Given the need to corroborate and expand research in the area of sentiment analy
 
 \section{Problem and Data Description}
 
-Following the example of \cite{shapiro2020measuring}, \cite{barsky2012information} and \cite{shapiro202}, two practical exercises are proposed.\\
+Following the example of \cite{shapiro2020measuring}, \cite{barsky2012information} and \cite{shapiro2020measuring}, two practical exercises are proposed.\\
 
 Firstly, in order to understand whether a sentiment index can be used for forecasting and estimating economic variables, and following the example of \cite{shapiro2020measuring}, we propose the estimation of two LASSO models (L1 norm) in order to identify possible relevant variables in scenarios macroeconomic models -- the first model is the conventional LASSO and the second the Adaptive LASSO. Still, in order to expand the field of estimations, an elastic net model is estimated, in order to capture improvements in model specifications and improve the selection of variables when the coefficients are close to zero  when:the coefficients are close to zero, elastic net tries to take advantage of the information provided by the variables without necessarily forcing the coefficients to zero, and without considering a scenario where all variables are used in order to improve a model (L2 norm).\\
 
@@ -316,16 +316,16 @@ if $y_1$ and $y_2$ are stationary, the values of $\Gamma_{jk}(i)$ converge to ze
 \end{align*}
 the four sets of coefficients $\Gamma_{11}(i)$, $\Gamma_{12}(i)$, $\Gamma_{21}(i)$ and $\Gamma_{22}(i)$ are called the impulse response function.
 
-\section{Cross Validation and Learning Algorithms}
+%\section{Cross Validation and Learning Algorithms}
 
-Cross Validation is a technique widely described in the literature \cite[]{hoornweg2018science, hastie2009elements, stone1974cross, breiman1992submodel} that aims to obtain optimal parameters from a predefined model. In Cross Validation, the dataset is divided between a training dataset and a test dataset, these being composed of 80\% and 20\% of the original dataset \cite[291]{breiman1992submodel}. The model, then, ``is estimated with a training sample and these estimates are used to ‘predict’ the outcomes of the validation sample. By varying the choice of a tuning parameters, one can select the set of configurations that leads to the best pseudo-out-of-sample forecasts''\cite[p.136]{hoornweg2018science}.\\
+%Cross Validation is a technique widely described in the literature \cite[]{hoornweg2018science, hastie2009elements, stone1974cross, breiman1992submodel} that aims to obtain optimal parameters from a predefined model. In Cross Validation, the dataset is divided between a training dataset and a test dataset, these being composed of 80\% and 20\% of the original dataset \cite[291]{breiman1992submodel}. The model, then, ``is estimated with a training sample and these estimates are used to ‘predict’ the outcomes of the validation sample. By varying the choice of a tuning parameters, one can select the set of configurations that leads to the best pseudo-out-of-sample forecasts''\cite[p.136]{hoornweg2018science}.\\
 
-\begin{figure}[!h]
-    \centering
-    \caption{Cross Validation Flowchart}
-    \includegraphics[width=.6\textwidth]{images/validation.eps}
-    \label{fig:cv}
-\end{figure}
+%\begin{figure}[!h]
+%    \centering
+%    \caption{Cross Validation Flowchart}
+%    \includegraphics[width=.6\textwidth]{images/validation.eps}
+%    \label{fig:cv}
+%\end{figure}
 
 
 Figure \ref{fig:cv} presents a flowchart explaining how Cross Validation works. The same procedure was performed for the models estimated in this work (LASSO, Adaptive LASSO, and Elastic Net). Both the training, validation, and test dataset division were done randomly using the texttt{Matrix} \cite[]{matrix2020cran} package of the R software.\\

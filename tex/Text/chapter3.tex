@@ -118,6 +118,40 @@ The lexicon created by the authors also allows for a more comprehensive classifi
     ``The paper finds evidence that some word lists are related to market reactions around the 10-K filing date, trading volume, unexpected earnings, and subsequent stock return volatility. [\dots] we show that financial researchers should be cautious when relying on word classification schemes derived outside the domain of business usage. Applying nonbusiness word lists to accounting and finance topics can lead to a high misclassification rate and spurious correlations''\citep[p.62]{loughran2011liability}
 \end{quote}
 
+\section{Procedure and Cross Validation}
+
+In terms of organizational and methodological structure of the work, lexicons are used in the initial process in order to process the texts as a whole and extract the index of feelings.\\
+
+As an initial procedure, the first necessary methodology input is the ECB speeches. A textual corpus is created from the discourses -- a corpus can be defined as a database that contains a set of texts, each with its respective Id for organizational purposes. In this work, the corpus used has, in addition to Id and texts, a column of dates, referring to the temporal moment of each discourse. With this database, a lexicon reading algorithm is applied to the texts and the referring feelings are extracted when in relation to the VADER and LM-SA-2020 lexicons in order to obtain the referring values for the sentiment variables.\\
+
+The other necessary methodological input refers to the economic variables: from the dataset obtained from the corpus, it is necessary to merge these data with the economic variables in order to obtain, again, a new dataset. The last step in the data manipulation and organization process is data wrangling -- data wrangling is the process of altering and mapping data to make it more suitable and valuable for various downstream applications such as analytics \cite[]{dplyr2022, wickham2016r}. In this part of the process, operations to treat missing values and outliers were used, so that the obtained database is ``clean'' and usable for statistical and econometric modeling.\\
+
+Finally, the last part of the methodological process is the part referring to econometric modeling and the so-called Cross Validation procedure. Cross Validation is a technique widely described in the literature \cite[]{hoornweg2018science, hastie2009elements, stone1974cross, breiman1992submodel} that aims to obtain optimal parameters from a predefined model. In Cross Validation, the dataset is divided between a training dataset and a test dataset, these being composed of 80\% and 20\% of the original dataset \cite[291]{breiman1992submodel}. The model, then, ``is estimated with a training sample and these estimates are used to ‘predict’ the outcomes of the validation sample. By varying the choice of a tuning parameters, one can select the set of configurations that leads to the best pseudo-out-of-sample forecasts''\cite[p.136]{hoornweg2018science}.\\
+
+That said, this same methodology was used: from the clean database obtained, it is divided into a Train dataset and a Test dataset so that the Train dataset is used to obtain the best estimated model -- iteratively, several models are estimated and then the best one is selected from the metric evaluation criteria. Computationally, this can be the most time-consuming part of the process depending on both the number of iterations needed to obtain the best model, and the parameters and variables used. When the best model is obtained, it is then estimated from the Test dataset and the results and model accuracy are extracted.\\
+
+Figure \ref{fig:diagram} presents the organizational diagram of the project. Details about the estimated models can be found in Chapter \ref{cap:results}: in order to present the necessary mathematical and statistical foundations, the models estimated in this work (LASSO, Adaptive LASSO, Elastic Net and VAR) all go through the Cross Validation and are chosen according to the metric evaluation measures adopted. Figure \ref{fig:diagram} presents the organizational diagram of the project. Details about the estimated models can be found in Chapter \ref{cap:results}: in order to present the necessary mathematical and statistical foundations, the models estimated in this work (LASSO, Adaptive LASSO, Elastic Net and VAR) all go through the Cross Validation and are chosen according to the metric evaluation measures adopted. \\
+
+
+
+\begin{landscape}
+\begin{figure}
+    \centering
+    \caption{Diagram of the Methodology Used}
+    \includegraphics[width = \linewidth]{images/diagram.pdf}
+    \caption*{Note: the procedure described in the flowchart defines the evolution of the project in order to describe the general procedures used. For information about the databases used, the \href{https://github.com/gustavovital/Dissertation/tree/main/data}{database repository} is free to consult}
+    \label{fig:diagram}
+\end{figure}
+\end{landscape}
+
+
+%\begin{figure}[!h]
+%    \centering
+%    \caption{Cross Validation Flowchart}
+%    \includegraphics[width=.6\textwidth]{images/validation.eps}
+%    \label{fig:cv}
+%\end{figure}
+
 
 
 
