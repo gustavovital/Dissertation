@@ -1,20 +1,68 @@
 \pagenumbering{roman}
-\begin{table}[]
-\begin{adjustbox}{max width=\textwidth}
-\begin{tabular}{llllllllll}
-VADER as   a   & \multicolumn{3}{l}{Consumer Opinion   Surveys} & \multicolumn{3}{l}{Unemployment Rate}      & \multicolumn{3}{l}{Interest Rate}         \\
-regressor      & MAE            & MSE           & RMSE          & MAE           & MSE          & RMSE        & MAE          & MSE          & RMSE        \\
-LASSO          & 1.644962       & 4.088575      & 2.022022      & 0.209345      & 0.075408     & 0.274606    & 0.176985     & 0.040708     & 0.201762    \\
-Adaptive LASSO & 1.655863       & 4.169653      & 2.041973      & 0.207937      & 0.064618     & 0.2542      & 0.188506     & 0.046849     & 0.216447    \\
-Elastic Net    & 1.652102       & 4.145303      & 2.036002      & 0.207139      & 0.073338     & 0.270809    & 0.181415     & 0.042943     & 0.207228    \\
-VADER as   a   & \multicolumn{3}{l}{Consumer Price Index}       & \multicolumn{3}{l}{Gross Domestic Product} & \multicolumn{3}{l}{Producer Prices Index} \\
-regressor      & MAE            & MSE           & RMSE          & MAE           & MSE          & RMSE        & MAE          & MSE          & RMSE        \\
-LASSO          & 1.644962       & 4.088575      & 2.022022      & 0.209345      & 0.075408     & 0.274606    & 0.176985     & 0.040708     & 0.201762    \\
-Adaptive LASSO & 1.655863       & 4.169653      & 2.041973      & 0.207937      & 0.064618     & 0.2542      & 0.188506     & 0.046849     & 0.216447    \\
-Elastic Net    & 1.652102       & 4.145303      & 2.036002      & 0.207139      & 0.073338     & 0.270809    & 0.181415     & 0.042943     & 0.207228   
+%\begin{table}[]
+%\begin{adjustbox}{max width=\textwidth}
+%\begin{tabular}{llllllllll}
+%VADER as   a   & \multicolumn{3}{l}{Consumer Opinion   Surveys} & \multicolumn{3}{l}{Unemployment Rate}      & \multicolumn{3}{l}{Interest Rate}         \\
+%regressor      & MAE            & MSE           & RMSE          & MAE           & MSE          & RMSE        & MAE          & MSE          & RMSE        \\
+%LASSO          & 1.644962       & 4.088575      & 2.022022      & 0.209345      & 0.075408     & 0.274606    & 0.176985     & 0.040708     & 0.201762    \\
+%Adaptive LASSO & 1.655863       & 4.169653      & 2.041973      & 0.207937      & 0.064618     & 0.2542      & 0.188506     & 0.046849     & 0.216447    \\
+%Elastic Net    & 1.652102       & 4.145303      & 2.036002      & 0.207139      & 0.073338     & 0.270809    & 0.181415     & 0.042943     & 0.207228    \\
+%VADER as   a   & \multicolumn{3}{l}{Consumer Price Index}       & \multicolumn{3}{l}{Gross Domestic Product} & \multicolumn{3}{l}{Producer Prices Index} \\
+%regressor      & MAE            & MSE           & RMSE          & MAE           & MSE          & RMSE        & MAE          & MSE          & RMSE        \\
+%LASSO          & 1.644962       & 4.088575      & 2.022022      & 0.209345      & 0.075408     & 0.274606    & 0.176985     & 0.040708     & 0.201762    \\
+%Adaptive LASSO & 1.655863       & 4.169653      & 2.041973      & 0.207937      & 0.064618     & 0.2542      & 0.188506     & 0.046849     & 0.216447    \\
+%Elastic Net    & 1.652102       & 4.145303      & 2.036002      & 0.207139      & 0.073338     & 0.270809    & 0.181415     & 0.042943     & 0.207228   
+%\end{tabular}
+%\end{adjustbox}
+%\end{table}
+
+
+\section{List of Variables Used in LASSO and VAR Models} \label{apendice:a}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{table}[!h]
+\centering 
+\caption{Variables used in the VAR and LASSO models}
+\adjustbox{max width=\textwidth}{
+\begin{tabular}{l|l}
+\hline
+Variable                                     & Description                                                                       \\ \hline
+Consumer   Price Index*                       & Consumer Price Index: Harmonized Prices:   Total All Items for the Euro Area      \\
+\multirow{2}{*}{Consumer Opinion   Surveys*} & Consumer Opinion Surveys: Consumer Prices: Future Tendency of   Inflation:        \\
+                                             & European Commission and National   Indicators for the Euro Area                   \\
+Real GDP                                     & Real Gross Domestic Product (Euro/ECU series) for Euro area                       \\
+Output Gap**                                 & Hodrick--Prescott filter cycle gap of the Real GDP                                \\
+\multirow{2}{*}{Interest Rate**}             & Long-Term Government Bond Yields: 10-year: Main (Including   Benchmark)           \\
+                                             & for the Euro Area                                                                 \\
+Unemployment Rate**                          & Harmonized Unemployment Rate: Total: All Persons for the Euro Area                \\
+\multirow{2}{*}{Producer Prices   Index**}   & Producer Prices Index: Economic Activities: Total Industrial Activities   for the \\
+                                             & Euro Area                                                                         \\
+\multirow{2}{*}{COVID*}                      & Dummy for COVID recession in Europe: 1, if from March to May 2020,                \\
+                                             & 0 otherwise                                                                       \\
+\multirow{2}{*}{SUBPRIME*}                & Dummy for Subprime mortgage crisis in Europe: 1, if from March 2008 to May 2009     \\
+                                             & 0 otherwise                                                                       \\
+Sentiment Index -- VADER**                   & VADER Negative Sentiment                                                          \\
+Sentiment Index -- LM-AS-2020**              & Loughran-McDonald Negative Sentiment                                              \\ \hline
 \end{tabular}
-\end{adjustbox}
+}
+
+\caption*{Note: * -- variable used in all models (LASSO, Adaptive LASSO, Elastic Net and VAR); ** -- variable used only in variable selection models.}
 \end{table}
+
+%\section{Cross Validation Algorithm}
+
+%\begin{algorithmic}
+%\caption{Cross Validation Algorithm for $\lambda$ -- Elastic Net}
+%\STATE $i\gets 10$
+%\IF {$i\geq 5$} 
+%  \STATE $i\gets i-1$
+%\ELSE
+%  \IF {$i\leq 3$}
+%    \STATE $i\gets i+2$
+%  \ENDIF
+%\ENDIF 
+%\end{algorithmic}
 
 
 \newpage
