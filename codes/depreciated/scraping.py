@@ -25,13 +25,13 @@ driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
 last_height = driver.execute_script("return document.body.scrollHeight")
 
 # Wait til load the page
-sleep(0.5)
+sleep(0.5)  # depends on internet
 
 # Generalise for the full page
 length = 1080
 while (length < last_height):
     driver.execute_script(f'window.scrollTo(0, {length})')
-    sleep(0.5)
+    sleep(0.5) 
     length += 1080
     last_height = driver.execute_script("return document.body.scrollHeight")
 
